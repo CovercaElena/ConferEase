@@ -12,33 +12,27 @@ import { Router } from '@angular/router';
 export class MenuComponent implements OnInit {
 
   activeItem!: MenuItem;
-  items: MenuItem[] = [
-    { label: 'LogIn', routerLink: '/login' },
-    { label: 'Home', routerLink: '' },
-    { label: 'My department conferences', routerLink: '/my-conferences' },
-    { label: 'Create conference', routerLink: '/create-conference' },
-    { label: 'Public conferences', routerLink: '/public-conferences' },
-  ];
+  items: MenuItem[]=[];
 
   ngOnInit() {
     this.items = [
       {
-        label: 'LogIn',
+        label: 'LogIn',routerLink:['/login'],routerLinkActiveOptions:"active"
       },
       {
-        label: 'Home',
+        label: 'Home', routerLink:[''],routerLinkActiveOptions:"active"
       },
       {
-        label: 'My department conferences',
+        label: 'My department conferences',routerLink:['/department'],routerLinkActiveOptions:"active-link"
       },
       {
-        label: 'Create conference',
+        label: 'Create conference',routerLink:['/create'],routerLinkActiveOptions:"active"
       },
       {
-        label: 'Public conferences',
+        label: 'Public conferences',routerLink:['/public'],routerLinkActiveOptions:"active"
       },
     ];
-    this.activeItem = this.items[0];
+
   }
 
   onMenuItemSelect(event: MenuItem) {
