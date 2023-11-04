@@ -14,6 +14,7 @@ import {InputTextModule} from "primeng/inputtext";
 import {ButtonModule} from "primeng/button";
 import {DialogModule} from "primeng/dialog";
 import {CheckboxModule} from "primeng/checkbox";
+import {CommonModule} from "@angular/common";
 
 @NgModule({
   declarations: [
