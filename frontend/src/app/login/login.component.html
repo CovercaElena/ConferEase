@@ -1,1 +1,29 @@
 <app-menu></app-menu>
+<p-splitter>
+  <ng-template pTemplate>
+    <div class="p-col-12 p-8"> <!-- Use p-col-12 to make the card span the full width -->
+      <p-card>
+        <ng-template pTemplate="header">
+          Header content here
+        </ng-template>
+        Body Content
+        <ng-template pTemplate="footer">
+          Footer content here
+        </ng-template>
+      </p-card>
+    </div>
+  </ng-template>
+  <ng-template pTemplate>
+    <div class="p-col-12 p-8 flex justify-content-end flex-wrap"> <!-- Use p-col-12 to make the card span the full width -->
+      <p-card>
+        <ng-template pTemplate="header">
+          Header content here
+        </ng-template>
+        Body Content
+        <ng-template pTemplate="footer">
+          Footer content here
+        </ng-template>
+      </p-card>
+    </div>
+  </ng-template>
+</p-splitter>

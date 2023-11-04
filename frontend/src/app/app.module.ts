@@ -18,6 +18,8 @@ import {CommonModule} from "@angular/common";
 import { DepartmentComponent } from './department/department.component';
 import { CreateComponent } from './create/create.component';
 import { PublicComponent } from './public/public.component';
+import {SplitterModule} from "primeng/splitter";
+import {CardModule} from "primeng/card";
 
 @NgModule({
   declarations: [
@@ -33,7 +35,7 @@ import { PublicComponent } from './public/public.component';
     BrowserModule,
     AppRoutingModule,
     ScheduleModule, RecurrenceEditorModule, MenubarModule,
-    InputTextModule, ButtonModule, DialogModule, CheckboxModule, MenubarModule, FormsModule
+    InputTextModule, ButtonModule, DialogModule, CheckboxModule, MenubarModule, FormsModule, SplitterModule, CardModule
   ],
   providers: [],
   bootstrap: [AppComponent]

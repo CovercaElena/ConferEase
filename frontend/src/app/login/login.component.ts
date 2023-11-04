@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import{AuthService} from "../services/auth.service";
-
+import {SplitterModule} from 'primeng/splitter';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
