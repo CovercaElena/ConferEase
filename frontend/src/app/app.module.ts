@@ -15,13 +15,19 @@ import {ButtonModule} from "primeng/button";
 import {DialogModule} from "primeng/dialog";
 import {CheckboxModule} from "primeng/checkbox";
 import {CommonModule} from "@angular/common";
+import { DepartmentComponent } from './department/department.component';
+import { CreateComponent } from './create/create.component';
+import { PublicComponent } from './public/public.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HomeComponent,
     MenuComponent,
-    LoginComponent
+    LoginComponent,
+    DepartmentComponent,
+    CreateComponent,
+    PublicComponent
   ],
   imports: [
     BrowserModule,
