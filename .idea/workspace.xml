@@ -2,15 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="074ed543-872e-4e34-8173-cf7047863d2f" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Conferease-Fe/src/app/environment.ts" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Conferease-Fe/src/assets/ConferEase.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Conferease-Fe/angular.json" beforeDir="false" afterPath="$PROJECT_DIR$/Conferease-Fe/angular.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Conferease-Fe/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/Conferease-Fe/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Conferease-Fe/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/Conferease-Fe/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Conferease-Fe/src/app/app-routing.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Conferease-Fe/src/app/app-routing.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Conferease-Fe/src/app/app.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/Conferease-Fe/src/app/app.component.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Conferease-Fe/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/Conferease-Fe/src/app/app.module.ts" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Conferease-Fe/src/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/Conferease-Fe/src/styles.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/app/environment.ts" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/assets/ConferEase.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/frontend/src/assets/Login.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/angular.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/angular.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/app-routing.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/app-routing.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/app.component.html" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/app.component.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/app/app.module.ts" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/app/app.module.ts" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/frontend/src/styles.css" beforeDir="false" afterPath="$PROJECT_DIR$/frontend/src/styles.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,6 +21,9 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "associatedIndex": 4
+}]]></component>
   <component name="ProjectId" id="2XiuA2X5aDSORkehriP8YkfNBhd" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -30,7 +34,8 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Users/Elena/Desktop/conferease/ConferEase/Conferease-Fe",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "C:/Users/Elena/Desktop/tw/ConferEase/frontend",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -43,7 +48,11 @@
       <option name="presentableId" value="Default" />
       <updated>1699124077916</updated>
       <workItem from="1699124079309" duration="22000" />
+      <workItem from="1699284065183" duration="34000" />
     </task>
     <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
   </component>
 </project>

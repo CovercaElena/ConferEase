@@ -1,15 +1,15 @@
-#logo
-{
-  width:60px;
-  height:60px;
+#logo {
+  width: 60px;
+  height: 60px;
 }
 
 /* allows the ul to flex model properties */
-.ui-tabview.ui-tabview-top>.ui-tabview-nav{
-  display:flex;
+.ui-tabview.ui-tabview-top > .ui-tabview-nav {
+  display: flex;
 }
+
 /* the li's will now always fill up the size of the ul's */
-.ui-tabview.ui-tabview-top>.ui-tabview-nav li{
+.ui-tabview.ui-tabview-top > .ui-tabview-nav li {
   flex: 1;
 }
 
