@@ -7,8 +7,8 @@ import {PublicComponent} from "./public/public.component";
 import {CreateComponent} from "./create/create.component";
 
 const routes: Routes = [
-  {path:'',component:HomeComponent},
-  {path:'login',component:LoginComponent},
+  {path:'',component:LoginComponent},
+  {path:'home',component:HomeComponent},
   {path:'department',component:DepartmentComponent},
   {path:'public',component:PublicComponent},
   {path:'create',component:CreateComponent},

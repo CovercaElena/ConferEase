@@ -17,10 +17,10 @@ export class MenuComponent implements OnInit {
   ngOnInit() {
     this.items = [
       {
-        label: 'LogIn',routerLink:['/login'],routerLinkActiveOptions:"active"
+        label: 'LogIn',routerLink:[''],routerLinkActiveOptions:"active"
       },
       {
-        label: 'Home', routerLink:[''],routerLinkActiveOptions:"active"
+        label: 'Home', routerLink:['/home'],routerLinkActiveOptions:"active"
       },
       {
         label: 'My department conferences',routerLink:['/department'],routerLinkActiveOptions:"active-link"
