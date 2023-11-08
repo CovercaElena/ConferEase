@@ -27,7 +27,8 @@ import {
     SocialLoginModule
 } from "@abacritt/angularx-social-login";
 import {AuthService} from "./services/auth.service";
-
+import {HttpClientModule} from "@angular/common/http";
+import { MessageService } from 'primeng/api';
 @NgModule({
     declarations: [
         AppComponent,
@@ -42,7 +43,7 @@ import {AuthService} from "./services/auth.service";
         BrowserModule,
         AppRoutingModule,
         ScheduleModule, RecurrenceEditorModule, MenubarModule,
-        InputTextModule, ButtonModule, DialogModule, CheckboxModule, MenubarModule, FormsModule, SplitterModule, CardModule, ReactiveFormsModule, SocialLoginModule, GoogleSigninButtonModule
+        InputTextModule, ButtonModule, DialogModule, CheckboxModule, MenubarModule, FormsModule, SplitterModule, CardModule, ReactiveFormsModule, SocialLoginModule, GoogleSigninButtonModule, HttpClientModule
     ],
     providers: [{
         provide: 'SocialAuthServiceConfig',
@@ -55,7 +56,7 @@ import {AuthService} from "./services/auth.service";
                 }
             ]
         } as SocialAuthServiceConfig,
-    }, AuthService],
+    }, AuthService,MessageService],
     bootstrap: [AppComponent]
 })
 export class AppModule {
