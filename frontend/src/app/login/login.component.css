@@ -96,7 +96,7 @@ label {
   left: 15%;
   top: 37%;
   pointer-events: none;
-  color: gray;
+  color: rgb(128, 128, 128);
 }
 
 .forgot {
@@ -128,4 +128,6 @@ a {
   box-shadow: inset 4px 4px 4px rgba(165, 163, 163, 0.315),
   4px 4px 4px rgba(218, 218, 218, 0.13);
 }
-
+body{
+    background-color:lightskyblue;
+}

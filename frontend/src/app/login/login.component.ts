@@ -1,39 +1,59 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {AuthService} from "../services/auth.service";
 import {SplitterModule} from 'primeng/splitter';
-import {FormBuilder,FormGroup} from "@angular/forms";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {environment} from "../environment";
+import {Router} from "@angular/router";
 
 @Component({
-  selector: 'app-login',
-  templateUrl: './login.component.html',
-  styleUrls: ['./login.component.css']
+    selector: 'app-login',
+    templateUrl: './login.component.html',
+    styleUrls: ['./login.component.css']
 })
-export class LoginComponent {
-  constructor(private authService: AuthService, private fb:FormBuilder) {
-  }
-  email!:String;
-  loginFormGroup!:FormBuilder;
+export class LoginComponent implements OnInit {
+    constructor(private authService: AuthService, private fb: FormBuilder, private router: Router) {
+        this.environment = environment;
+    }
 
 
-  dataSave(email: string) {
-    return this.authService.dataSave(email);
-  }
+    ngOnInit(): void {
+        this.environment = environment;
+        this.initializeFormGroupLogin();
+    }
 
-  get() {
-    return this.authService.get();
-  }
+    environment: any;
+    email!: string;
+    loginFormGroup!: FormGroup;
 
-  dataRemove() {
-    return this.authService.dataRemove();
-  }
+    private initializeFormGroupLogin() {
+        this.loginFormGroup = this.fb.group({
+            email: ['', Validators.required],
+            password: ['', Validators.required],
+        });
+    }
 
-  deleteAll() {
-    return this.authService.deleteAll();
-  }
+    dataSave(email: string) {
+        return this.authService.dataSave(email);
+    }
 
-  Login()
-  {
+    get() {
+        return this.authService.get();
+    }
 
-  }
+    dataRemove() {
+        return this.authService.dataRemove();
+    }
+
+    deleteAll() {
+        return this.authService.deleteAll();
+    }
+
+    login() {
+        this.email = this.loginFormGroup.controls['email'].value;
+        console.log(this.email);
+        this.dataSave(this.email);
+        this.router.navigate(['home']);
+    }
+
 
 }

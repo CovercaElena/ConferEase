@@ -1,7 +1,7 @@
 // @ts-ignore
-export const environment
+export const environment=
 {
 
-  apiUrl:String="http://localhost:3000/api"
+  apiUrl:'http://localhost:3000/api'
 
 }

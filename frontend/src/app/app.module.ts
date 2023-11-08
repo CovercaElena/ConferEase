@@ -1,6 +1,6 @@
 import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
-import {FormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {ScheduleModule, RecurrenceEditorModule} from '@syncfusion/ej2-angular-schedule';
@@ -31,12 +31,12 @@ import {CardModule} from "primeng/card";
     CreateComponent,
     PublicComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    ScheduleModule, RecurrenceEditorModule, MenubarModule,
-    InputTextModule, ButtonModule, DialogModule, CheckboxModule, MenubarModule, FormsModule, SplitterModule, CardModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        ScheduleModule, RecurrenceEditorModule, MenubarModule,
+        InputTextModule, ButtonModule, DialogModule, CheckboxModule, MenubarModule, FormsModule, SplitterModule, CardModule, ReactiveFormsModule
+    ],
   providers: [],
   bootstrap: [AppComponent]
 })
