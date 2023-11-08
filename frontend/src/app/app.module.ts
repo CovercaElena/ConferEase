@@ -20,31 +20,49 @@ import {CreateComponent} from './create/create.component';
 import {PublicComponent} from './public/public.component';
 import {SplitterModule} from "primeng/splitter";
 import {CardModule} from "primeng/card";
+import {
+    GoogleLoginProvider,
+    GoogleSigninButtonModule,
+    SocialAuthServiceConfig,
+    SocialLoginModule
+} from "@abacritt/angularx-social-login";
+import {AuthService} from "./services/auth.service";
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    HomeComponent,
-    MenuComponent,
-    LoginComponent,
-    DepartmentComponent,
-    CreateComponent,
-    PublicComponent
-  ],
+    declarations: [
+        AppComponent,
+        HomeComponent,
+        MenuComponent,
+        LoginComponent,
+        DepartmentComponent,
+        CreateComponent,
+        PublicComponent
+    ],
     imports: [
         BrowserModule,
         AppRoutingModule,
         ScheduleModule, RecurrenceEditorModule, MenubarModule,
-        InputTextModule, ButtonModule, DialogModule, CheckboxModule, MenubarModule, FormsModule, SplitterModule, CardModule, ReactiveFormsModule
+        InputTextModule, ButtonModule, DialogModule, CheckboxModule, MenubarModule, FormsModule, SplitterModule, CardModule, ReactiveFormsModule, SocialLoginModule, GoogleSigninButtonModule
     ],
-  providers: [],
-  bootstrap: [AppComponent]
+    providers: [{
+        provide: 'SocialAuthServiceConfig',
+        useValue: {
+            autoLogin: true, //keeps the user signed in
+            providers: [
+                {
+                    id: GoogleLoginProvider.PROVIDER_ID,
+                    provider: new GoogleLoginProvider('78151943185-csairh2o5tjbgahgh8e082v374f4cjao.apps.googleusercontent.com') // your client id
+                }
+            ]
+        } as SocialAuthServiceConfig,
+    }, AuthService],
+    bootstrap: [AppComponent]
 })
 export class AppModule {
-  constructor(private primengConfig: PrimeNGConfig) {
-  }
+    constructor(private primengConfig: PrimeNGConfig) {
+    }
 
-  ngOnInit() {
-    this.primengConfig.ripple = true;
-  }
+    ngOnInit() {
+        this.primengConfig.ripple = true;
+    }
 }
