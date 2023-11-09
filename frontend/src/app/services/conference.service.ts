@@ -13,8 +13,8 @@ export class ConferenceService {
     constructor(private http: HttpClient) {
     }
 
-    getConferences(confStatus: number, userId: number): Observable<DropdownValue[]> {
-        return this.http.get<DropdownValue[]>(environment.apiUrl + '/' + confStatus + '/' + userId).pipe(
+    getConferences(confStatus: number, user: string): Observable<DropdownValue[]> {
+        return this.http.get<DropdownValue[]>(environment.apiUrl + '/conference/' + confStatus + '/' + user).pipe(
             retry(3),
             tap(data => data),
             map(res => {
@@ -43,4 +43,5 @@ export class ConferenceService {
         );
 
     }
+
 }

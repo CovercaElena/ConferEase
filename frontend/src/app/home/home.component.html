@@ -1,7 +1,70 @@
 <app-menu></app-menu>
-<h1>Angular sessionStorage</h1>
-<button (click)="dataSave('elena')">Save data to sessionStorage</button>
-<p>{{ get() }}</p>
-<button a routerLink='/login'>GO</button>
 
+<!-- Past Conferences -->
+<div class="p-4 m-3 home border-round w-full h-full">
 
+    <h1 class="text-blue-800">Past Conferences</h1>
+    <div *ngIf="pastConferences$ | async as pastConferences; else pastLoading" class="flex flex-row flex-wrap gap-5">
+        <ng-container *ngIf="pastConferences.length > 0">
+            <div *ngFor="let item of pastConferences; let i = index" class="shadow-4 custom-card">
+                <p-card class="custom-card w-fit h-fit">
+                    <ng-template pTemplate="title">
+                        <strong>{{ item.name }}</strong>
+                    </ng-template>
+                    <ng-template pTemplate="subtitle">
+                        <p>Location: {{ item.location }}</p>
+                    </ng-template>
+                    <ng-template pTemplate="content">
+                        <p>Date: {{ item.date }}</p>
+                    </ng-template>
+                </p-card>
+            </div>
+        </ng-container>
+
+        <ng-container *ngIf="pastConferences.length === 0">
+            <p class="text-red-600">No past conferences available.</p>
+        </ng-container>
+    </div>
+    <ng-template #pastLoading>
+        <div class="newtons-cradle">
+            <div class="newtons-cradle__dot"></div>
+            <div class="newtons-cradle__dot"></div>
+            <div class="newtons-cradle__dot"></div>
+            <div class="newtons-cradle__dot"></div>
+        </div>
+    </ng-template>
+
+    <p-divider></p-divider>
+    <!-- Future Conferences -->
+    <h1 class="text-blue-800">Future Conferences</h1>
+    <div *ngIf="futureConferences$ | async as futureConferences; else futureLoading"
+         class="flex flex-row flex-wrap gap-5">
+        <ng-container *ngIf="futureConferences.length > 0">
+            <div *ngFor="let item of futureConferences; let i = index" class="shadow-4">
+                <p-card [ngStyle]="{ 'background-color': '#abc9fb' }">
+                    <ng-template pTemplate="title">
+                        <strong>{{ item.name }}</strong>
+                    </ng-template>
+                    <ng-template pTemplate="subtitle">
+                        <p>Location: {{ item.location }}</p>
+                    </ng-template>
+                    <ng-template pTemplate="content">
+                        <p>Date: {{ item.date }}</p>
+                    </ng-template>
+                </p-card>
+            </div>
+        </ng-container>
+
+        <ng-container *ngIf="futureConferences.length === 0">
+            <p class="text-red-600">No future conferences available.</p>
+        </ng-container>
+    </div>
+    <ng-template #futureLoading>
+        <div class="newtons-cradle">
+            <div class="newtons-cradle__dot"></div>
+            <div class="newtons-cradle__dot"></div>
+            <div class="newtons-cradle__dot"></div>
+            <div class="newtons-cradle__dot"></div>
+        </div>
+    </ng-template>
+</div>

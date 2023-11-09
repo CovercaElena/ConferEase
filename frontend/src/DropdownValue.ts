@@ -7,5 +7,7 @@ export class DropdownValue {
     statusId: number;
     // @ts-ignore
     status: string;
+    location?:string;
+    date?:string;
 
 }

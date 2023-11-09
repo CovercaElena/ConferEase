@@ -29,6 +29,7 @@ import {
 import {AuthService} from "./services/auth.service";
 import {HttpClientModule} from "@angular/common/http";
 import { MessageService } from 'primeng/api';
+import {DividerModule} from "primeng/divider";
 @NgModule({
     declarations: [
         AppComponent,
@@ -43,7 +44,7 @@ import { MessageService } from 'primeng/api';
         BrowserModule,
         AppRoutingModule,
         ScheduleModule, RecurrenceEditorModule, MenubarModule,
-        InputTextModule, ButtonModule, DialogModule, CheckboxModule, MenubarModule, FormsModule, SplitterModule, CardModule, ReactiveFormsModule, SocialLoginModule, GoogleSigninButtonModule, HttpClientModule
+        InputTextModule, ButtonModule, DialogModule, CheckboxModule, MenubarModule, FormsModule, SplitterModule, CardModule, ReactiveFormsModule, SocialLoginModule, GoogleSigninButtonModule, HttpClientModule, DividerModule
     ],
     providers: [{
         provide: 'SocialAuthServiceConfig',
