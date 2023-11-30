@@ -1,9 +1,14 @@
 .p-card {
-    background: linear-gradient(to bottom, #c3e6ec, #d0e1fd) !important;
+    background: linear-gradient(to bottom, rgb(208, 225, 253), #9196cc) !important;
 }
 
-.home {
+.back {
     background-color: #F5F5F5 !important;
+  padding:30px !important;
+  border-radius:20px !important;
+  margin-left:10px !important;
+  margin-right:30px !important;
+
 }
 
 .newtons-cradle {
@@ -76,4 +81,11 @@
         transform: rotate(-70deg);
         animation-timing-function: ease-in;
     }
+}
+h1 {
+  color: #71769f;
+
+}
+button {
+  color: #353b81 !important;
 }

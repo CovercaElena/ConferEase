@@ -25,8 +25,11 @@ export class HomeComponent implements OnInit {
     userId!: number;
     socialUser!: SocialUser;
     isLoggedin?: boolean;
+  now = new Date();
+  tmp=this.now.toString();
 
-    constructor(
+
+  constructor(
         private authService: AuthService,
         private conferenceService: ConferenceService,
         private messageService: MessageService,
@@ -34,10 +37,16 @@ export class HomeComponent implements OnInit {
         private socialAuthService: SocialAuthService
     ) {
         this.environment = environment;
-    }
+    this.now = new Date();
+    this.tmp=this.now.toString();
+
+
+  }
 
     ngOnInit() {
         this.environment = environment;
+      this.now = new Date();
+      this.tmp=this.now.toString();
         this.socialAuthService.authState.subscribe(async (user) => {
             this.socialUser = user;
             this.isLoggedin = user != null;

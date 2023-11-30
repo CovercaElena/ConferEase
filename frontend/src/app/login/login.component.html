@@ -1,19 +1,12 @@
 <ng-container class="p-8 w-8 flex justify-content-center flex-wrap shadow-8">
     <div class="p-8 w-10 m-auto ">
-        <div *ngIf="isLoggedin === false">
-            <div>
-                <div class="container shadow-8">
-                    <button  (click)="loginWithGoogle()" class="p-button-raised p-button-help">Login with Google</button>
-                </div>
-            </div>
-        </div>
+
         <div class=" flex align-items-center justify-content-center ">
-            <div class="container shadow-8" *ngIf="isLoggedin === true">
+            <div class="container shadow-8">
                 <div class="left">
                     <form class="form" [formGroup]="loginFormGroup">
                         <div class="input-block">
-                            <input class="input" type="text" id="email" formControlName="email"
-                                   [value]="this.socialUser.email">
+                            <input class="input" type="text" id="email" formControlName="email">
 
                             <label for="email">Email</label>
                         </div>
@@ -22,7 +15,7 @@
                             <label for="pass">Password</label>
                         </div>
                         <div class="input-block">
-                            <button (click)="login()">Submit</button>
+                            <button (click)="loginWithGoogle()">Submit</button>
                         </div>
                     </form>
                 </div>

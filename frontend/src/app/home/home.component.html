@@ -1,13 +1,14 @@
 <app-menu></app-menu>
 
 <!-- Past Conferences -->
-<div class="p-4 m-3 home border-round w-full h-full">
+<div class="p-4 m-3 home border-round w-full h-full back shadow-7">
 
-    <h1 class="text-blue-800">Past Conferences</h1>
+    <h1>Past Conferences</h1>
     <div *ngIf="pastConferences$ | async as pastConferences; else pastLoading" class="flex flex-row flex-wrap gap-5">
         <ng-container *ngIf="pastConferences.length > 0">
+          <div class="flex justify-content-center align-items-center flex-wrap gap-5">
             <div *ngFor="let item of pastConferences; let i = index" class="shadow-4 custom-card">
-                <p-card class="custom-card w-fit h-fit">
+                <p-card class="custom-card w-fit h-fit" class="cards">
                     <ng-template pTemplate="title">
                         <strong>{{ item.name }}</strong>
                     </ng-template>
@@ -19,6 +20,8 @@
                     </ng-template>
                 </p-card>
             </div>
+          <button pButton pRipple type="button" icon=" pi pi-arrow-right" class="p-button-rounded p-button-outlined"></button>
+          </div>
         </ng-container>
 
         <ng-container *ngIf="pastConferences.length === 0">
@@ -36,14 +39,16 @@
 
     <p-divider></p-divider>
     <!-- Future Conferences -->
-    <h1 class="text-blue-800">Future Conferences</h1>
+    <h1>Future Conferences</h1>
     <div *ngIf="futureConferences$ | async as futureConferences; else futureLoading"
          class="flex flex-row flex-wrap gap-5">
+      <div class="flex justify-content-center align-items-center flex-wrap gap-5">
         <ng-container *ngIf="futureConferences.length > 0">
             <div *ngFor="let item of futureConferences; let i = index" class="shadow-4">
-                <p-card [ngStyle]="{ 'background-color': '#abc9fb' }">
+                <p-card [ngStyle]="{ 'background-color': '#abc9fb' }" class="cards">
                     <ng-template pTemplate="title">
                         <strong>{{ item.name }}</strong>
+                      <button pButton pRipple type="button" icon=" pi pi pi-flag-fill" class="p-button-rounded p-button-outlined"></button>
                     </ng-template>
                     <ng-template pTemplate="subtitle">
                         <p>Location: {{ item.location }}</p>
@@ -54,6 +59,8 @@
                 </p-card>
             </div>
         </ng-container>
+        <button pButton pRipple type="button" icon=" pi pi-arrow-right" class="p-button-rounded p-button-outlined"></button>
+    </div>
 
         <ng-container *ngIf="futureConferences.length === 0">
             <p class="text-red-600">No future conferences available.</p>

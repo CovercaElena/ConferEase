@@ -17,7 +17,7 @@ export class LoginComponent implements OnInit {
     }
 
 
-    async ngOnInit() {
+     ngOnInit() {
         this.environment = environment;
         this.socialAuthService.authState.subscribe((user) => {
             this.socialUser = user;
@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
             console.log(this.socialUser);
             if (user && user.email) {
                 // @ts-ignore
-                this.loginFormGroup.get('email').setValue(user.email);
+              this.router.navigate(['home']);
             }
         });
         this.initializeFormGroupLogin();
@@ -64,7 +64,7 @@ export class LoginComponent implements OnInit {
 
     login() {
         console.log('Login button clicked');
-        this.email = this.loginFormGroup.controls['email'].value;
+
         console.log(this.email);
         this.socialAuthService.authState.subscribe((user) => {
             this.socialUser = user;
@@ -77,6 +77,7 @@ export class LoginComponent implements OnInit {
 
     loginWithGoogle(): void {
         this.socialAuthService.signIn(GoogleLoginProvider.PROVIDER_ID);
+        this.login();
     }
 
 
