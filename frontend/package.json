@@ -19,6 +19,7 @@
     "@angular/platform-browser": "^16.2.0",
     "@angular/platform-browser-dynamic": "^16.2.0",
     "@angular/router": "^16.2.0",
+    "@daypilot/daypilot-lite-angular": "^3.19.0",
     "@syncfusion/ej2-angular-schedule": "^23.1.40",
     "@syncfusion/ej2-material-theme": "~23.1.40",
     "bootstrap": "^5.3.2",

@@ -1,0 +1,30 @@
+/* calendar.component.css */
+.daypilot-modal input[type="text"],
+.daypilot-modal input[type="datetime-local"],
+.daypilot-modal select {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.daypilot-modal textarea {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  box-sizing: border-box;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+.daypilot-modal label {
+  display: block;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.daypilot-modal {
+  background-color: #f8f8f8;
+}

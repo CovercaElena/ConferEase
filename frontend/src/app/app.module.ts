@@ -30,6 +30,9 @@ import {AuthService} from "./services/auth.service";
 import {HttpClientModule} from "@angular/common/http";
 import { MessageService } from 'primeng/api';
 import {DividerModule} from "primeng/divider";
+import { CalendarComponent } from './calendar/calendar.component';
+import {DataService} from "./calendar/data.service";
+import {DayPilotModule} from "@daypilot/daypilot-lite-angular";
 @NgModule({
     declarations: [
         AppComponent,
@@ -38,13 +41,14 @@ import {DividerModule} from "primeng/divider";
         LoginComponent,
         DepartmentComponent,
         CreateComponent,
-        PublicComponent
+        PublicComponent,
+        CalendarComponent
     ],
     imports: [
         BrowserModule,
         AppRoutingModule,
         ScheduleModule, RecurrenceEditorModule, MenubarModule,
-        InputTextModule, ButtonModule, DialogModule, CheckboxModule, MenubarModule, FormsModule, SplitterModule, CardModule, ReactiveFormsModule, SocialLoginModule, GoogleSigninButtonModule, HttpClientModule, DividerModule
+        InputTextModule, ButtonModule, DialogModule, CheckboxModule, MenubarModule, FormsModule, SplitterModule, CardModule, ReactiveFormsModule, SocialLoginModule, GoogleSigninButtonModule, HttpClientModule, DividerModule,DayPilotModule
     ],
     providers: [{
         provide: 'SocialAuthServiceConfig',
@@ -57,7 +61,7 @@ import {DividerModule} from "primeng/divider";
                 }
             ]
         } as SocialAuthServiceConfig,
-    }, AuthService,MessageService],
+    }, AuthService,MessageService,DataService],
     bootstrap: [AppComponent]
 })
 export class AppModule {
