@@ -46,5 +46,19 @@ export class ConferenceService {
         );
 
     }
+    getDepartmentConfs(department:string):Observable<MyEventData[]>
+    {
+        return this.http.get<MyEventData[]>(environment.apiUrl + '/conference/' + department).pipe(
+            retry(3),
+            tap(data => data),
+            map(res => {
+                console.log('getDepartmentConfs', res);
+                return res;
+            }),
+            catchError((error: HttpErrorResponse) => {
+                return throwError(() => error);
+            })
+        );
+    }
 
 }

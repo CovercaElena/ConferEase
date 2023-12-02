@@ -14,5 +14,6 @@ export class DropdownValue {
     end?:Date;
     type?:string;
     invitees?:string[];
+    department?:string;
 
 }

@@ -1,1 +1,81 @@
+<!-- department-conferences.component.html -->
+
 <app-menu></app-menu>
+<div class="p-4 m-3 home border-round w-full h-full back shadow-7">
+    <h1>Department Conferences</h1>
+    <p-divider></p-divider>
+    <div class="card">
+        <p-table #dt1 [value]="departmentConferences" selectionMode="single" [(selection)]="selectedConference" dataKey="id"
+                 [tableStyle]="{'min-width': '50rem'}" [rows]="10" [paginator]="true" stateStorage="session"
+                 stateKey="statedemo-session">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th pSortableColumn="text" class="w-15">Name <p-sortIcon field="text"></p-sortIcon></th>
+                    <th pSortableColumn="start" class="w-15">Start <p-sortIcon field="start"></p-sortIcon></th>
+                    <th pSortableColumn="end" class="w-15">End <p-sortIcon field="end"></p-sortIcon></th>
+                    <th pSortableColumn="location" class="w-15">Location <p-sortIcon field="location"></p-sortIcon></th>
+                    <th pSortableColumn="type" class="w-15">Type <p-sortIcon field="type"></p-sortIcon></th>
+                    <th pSortableColumn="invitees" class="w-15">Invitees <p-sortIcon field="invitees"></p-sortIcon></th>
+                </tr>
+                <tr>
+                    <th>
+                        <input pInputText type="text" (input)="filterTable('text', $event)" placeholder="Search by Name"
+                               class="w-full">
+                    </th>
+                    <th>
+                        <input pInputText type="text" (input)="filterTable('start', $event)" placeholder="Search by Start"
+                               class="w-full">
+                    </th>
+                    <th>
+                        <input pInputText type="text" (input)="filterTable('end', $event)" placeholder="Search by End" class="w-full">
+                    </th>
+                    <th>
+                        <input pInputText type="text" (input)="filterTable('location', $event)" placeholder="Search by Location"
+                               class="w-full">
+                    </th>
+                    <th>
+                        <input pInputText type="text" (input)="filterTable('type', $event)" placeholder="Search by Type" class="w-full">
+                    </th>
+                    <th>
+                        <input pInputText type="text" (input)="filterTable('invitees', $event)" placeholder="Search by Invitees"
+                               class="w-full">
+                    </th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-conference>
+                <tr [pSelectableRow]="conference">
+                    <td>
+                        <span class="p-column-title">Name</span>
+                        {{ conference.text }}
+                    </td>
+                    <td>
+                        <span class="p-column-title">Start</span>
+                        {{ conference.start | date: 'short' }}
+                    </td>
+                    <td>
+                        <span class="p-column-title">End</span>
+                        {{ conference.end | date: 'short' }}
+                    </td>
+                    <td>
+                        <span class="p-column-title">Location</span>
+                        {{ conference.location }}
+                    </td>
+                    <td>
+                        <span class="p-column-title">Type</span>
+                        {{ conference.type }}
+                    </td>
+                    <td>
+                        <span class="p-column-title">Invitees</span>
+                        {{ conference.invitees.join(', ') }}
+                    </td>
+                    <!-- Add more columns based on your data structure -->
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="emptymessage">
+                <tr>
+                    <td colspan="6">No conferences found.</td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+</div>
