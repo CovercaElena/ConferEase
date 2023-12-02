@@ -1,10 +1,81 @@
-import { Component } from '@angular/core';
+// future-conferences.component.ts
+
+import { Component, OnInit, ViewChild, ViewEncapsulation } from '@angular/core';
+import { AuthService } from '../services/auth.service';
+import { DropdownValue } from '../../DropdownValue';
+import { ConferenceService } from '../services/conference.service';
+import { MessageService } from 'primeng/api';
+import { environment } from '../environment';
+import { Router } from '@angular/router';
+import { SocialAuthService, SocialUser } from '@abacritt/angularx-social-login';
+import { Observable } from 'rxjs';
+import { MyEventData } from "../calendar/data.service";
+import { DatePipe } from '@angular/common';
+import { Table } from 'primeng/table';
 
 @Component({
   selector: 'app-future-conferences',
   templateUrl: './future-conferences.component.html',
-  styleUrls: ['./future-conferences.component.css']
+  styleUrls: ['./future-conferences.component.css'],
+  encapsulation: ViewEncapsulation.None,
+  providers: [DatePipe],
 })
-export class FutureConferencesComponent {
+export class FutureConferencesComponent implements OnInit {
+  environment: any;
+  futureConferences$!: Observable<MyEventData[]>;
+  futureConferences: MyEventData[] = [];
+  user!: DropdownValue;
+  email!: string;
+  userId!: number;
+  socialUser!: SocialUser;
+  isLoggedin?: boolean;
+  selectedConference!: MyEventData;
+
+  @ViewChild('dt1') dt1!: Table;
+
+  constructor(
+      private authService: AuthService,
+      private conferenceService: ConferenceService,
+      private messageService: MessageService,
+      private router: Router,
+      private socialAuthService: SocialAuthService
+  ) {
+    this.environment = environment;
+  }
+
+  filterTable(column: string, event: any) {
+    const filterValue = event.target.value;
+    this.dt1.filter(filterValue, column, 'contains');
+  }
+
+  ngOnInit(): void {
+    this.environment = environment;
+    this.socialAuthService.authState.subscribe(async (user) => {
+      this.socialUser = user;
+      this.isLoggedin = user != null;
+      console.log(this.socialUser);
+
+      if (user && user.email) {
+        this.futureConferences$ = this.conferenceService.getConferences(2, user.email);
+
+        this.futureConferences$.subscribe(
+            (futureConferences) => {
+              this.futureConferences = futureConferences;
+            },
+            (error) => {
+              console.log(error);
+              this.messageService.add({
+                key: 'top-right',
+                severity: 'error',
+                summary: 'Error',
+                detail: 'There was an error trying to retrieve future conferences',
+                life: 3000,
+              });
+            }
+        );
+      }
+    });
+  }
+
 
 }
