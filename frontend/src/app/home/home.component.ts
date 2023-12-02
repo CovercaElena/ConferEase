@@ -7,6 +7,11 @@ import {environment} from '../environment';
 import {Router} from '@angular/router';
 import {SocialAuthService, SocialUser} from '@abacritt/angularx-social-login';
 import {forkJoin, Observable} from 'rxjs';
+import {CarouselModule} from "primeng/carousel";
+import { DayPilot } from "@daypilot/daypilot-lite-angular";
+import {MyEventData} from "../calendar/data.service";
+import Date = DayPilot.Date;
+
 
 @Component({
     selector: 'app-home',
@@ -16,20 +21,20 @@ import {forkJoin, Observable} from 'rxjs';
 })
 export class HomeComponent implements OnInit {
     environment: any;
-    pastConferences$!: Observable<DropdownValue[]>;
-    futureConferences$!: Observable<DropdownValue[]>;
-    pastConferences: DropdownValue[] = [];
-    futureConferences: DropdownValue[] = [];
+    pastConferences$!: Observable<MyEventData[]>;
+    futureConferences$!: Observable<MyEventData[]>;
+    pastConferences: MyEventData[] = [];
+    futureConferences: MyEventData[] = [];
     user!: DropdownValue;
     email!: string;
     userId!: number;
     socialUser!: SocialUser;
     isLoggedin?: boolean;
-  now = new Date();
-  tmp=this.now.toString();
+    now = new Date();
+    tmp = this.now.toString();
 
 
-  constructor(
+    constructor(
         private authService: AuthService,
         private conferenceService: ConferenceService,
         private messageService: MessageService,
@@ -37,16 +42,16 @@ export class HomeComponent implements OnInit {
         private socialAuthService: SocialAuthService
     ) {
         this.environment = environment;
-    this.now = new Date();
-    this.tmp=this.now.toString();
+        this.now = new Date();
+        this.tmp = this.now.toString();
 
 
-  }
+    }
 
     ngOnInit() {
         this.environment = environment;
-      this.now = new Date();
-      this.tmp=this.now.toString();
+        this.now = new Date();
+        this.tmp = this.now.toString();
         this.socialAuthService.authState.subscribe(async (user) => {
             this.socialUser = user;
             this.isLoggedin = user != null;

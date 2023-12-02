@@ -1,5 +1,5 @@
 .p-card {
-    background: linear-gradient(to bottom, rgb(208, 225, 253), #9196cc) !important;
+    background: linear-gradient(to bottom, rgb(208, 225, 253), rgba(145, 150, 204, 0.41)) !important;
 }
 
 .back {
@@ -88,4 +88,8 @@ h1 {
 }
 button {
   color: #353b81 !important;
+}
+a{
+    text-decoration: none !important;
+    color:#71769f;
 }

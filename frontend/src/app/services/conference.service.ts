@@ -3,18 +3,21 @@ import {HttpClient, HttpErrorResponse, HttpHeaders} from "@angular/common/http";
 import {Observable, catchError, map, retry, tap, throwError} from "rxjs";
 import {environment} from "../environment";
 import {DropdownValue} from "../../DropdownValue";
+import { DayPilot } from "@daypilot/daypilot-lite-angular";
+import {MyEventData} from "../calendar/data.service";
+
 
 @Injectable({
     providedIn: 'root'
 })
 export class ConferenceService {
-    headers: HttpHeaders = new HttpHeaders({'Content-Type': 'aplication/json',});
-
+    headers: HttpHeaders = new HttpHeaders({'Content-Type': 'application/json',});
+    events: MyEventData[] = [];
     constructor(private http: HttpClient) {
     }
 
-    getConferences(confStatus: number, user: string): Observable<DropdownValue[]> {
-        return this.http.get<DropdownValue[]>(environment.apiUrl + '/conference/' + confStatus + '/' + user).pipe(
+    getConferences(confStatus: number, user: string): Observable<MyEventData[]> {
+        return this.http.get<MyEventData[]>(environment.apiUrl + '/conference/' + confStatus + '/' + user).pipe(
             retry(3),
             tap(data => data),
             map(res => {

@@ -33,6 +33,10 @@ import {DividerModule} from "primeng/divider";
 import { CalendarComponent } from './calendar/calendar.component';
 import {DataService} from "./calendar/data.service";
 import {DayPilotModule} from "@daypilot/daypilot-lite-angular";
+import {CarouselModule} from "primeng/carousel";
+import { PastConferencesComponent } from './past-conferences/past-conferences.component';
+import {TableModule} from "primeng/table";
+import { FutureConferencesComponent } from './future-conferences/future-conferences.component';
 @NgModule({
     declarations: [
         AppComponent,
@@ -42,13 +46,15 @@ import {DayPilotModule} from "@daypilot/daypilot-lite-angular";
         DepartmentComponent,
         CreateComponent,
         PublicComponent,
-        CalendarComponent
+        CalendarComponent,
+        PastConferencesComponent,
+        FutureConferencesComponent
     ],
     imports: [
         BrowserModule,
         AppRoutingModule,
         ScheduleModule, RecurrenceEditorModule, MenubarModule,
-        InputTextModule, ButtonModule, DialogModule, CheckboxModule, MenubarModule, FormsModule, SplitterModule, CardModule, ReactiveFormsModule, SocialLoginModule, GoogleSigninButtonModule, HttpClientModule, DividerModule,DayPilotModule
+        InputTextModule, ButtonModule, DialogModule, CheckboxModule, MenubarModule, FormsModule, SplitterModule, CardModule, ReactiveFormsModule, SocialLoginModule, GoogleSigninButtonModule, HttpClientModule, DividerModule, DayPilotModule, CarouselModule, TableModule
     ],
     providers: [{
         provide: 'SocialAuthServiceConfig',
