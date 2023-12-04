@@ -5,6 +5,7 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {ScheduleModule, RecurrenceEditorModule} from '@syncfusion/ej2-angular-schedule';
 import {HomeComponent} from './home/home.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MenuComponent} from './menu/menu.component';
 import {LoginComponent} from './login/login.component';
 import {PrimeNGConfig} from 'primeng/api'
@@ -19,6 +20,7 @@ import {DepartmentComponent} from './department/department.component';
 import {CreateComponent} from './create/create.component';
 import {PublicComponent} from './public/public.component';
 import {SplitterModule} from "primeng/splitter";
+import { DropdownModule } from 'primeng/dropdown';
 import {CardModule} from "primeng/card";
 import {
     GoogleLoginProvider,
@@ -54,7 +56,7 @@ import { FutureConferencesComponent } from './future-conferences/future-conferen
         BrowserModule,
         AppRoutingModule,
         ScheduleModule, RecurrenceEditorModule, MenubarModule,
-        InputTextModule, ButtonModule, DialogModule, CheckboxModule, MenubarModule, FormsModule, SplitterModule, CardModule, ReactiveFormsModule, SocialLoginModule, GoogleSigninButtonModule, HttpClientModule, DividerModule, DayPilotModule, CarouselModule, TableModule
+        InputTextModule,BrowserAnimationsModule,DropdownModule, ButtonModule, DialogModule, CheckboxModule, MenubarModule, FormsModule, SplitterModule, CardModule, ReactiveFormsModule, SocialLoginModule, GoogleSigninButtonModule, HttpClientModule, DividerModule, DayPilotModule, CarouselModule, TableModule
     ],
     providers: [{
         provide: 'SocialAuthServiceConfig',

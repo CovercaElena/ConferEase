@@ -1,81 +1,173 @@
-
-
 <app-menu></app-menu>
 <div class="p-4 m-3 home border-round w-full h-full back shadow-7">
-    <h1>Future Conferences</h1>
-    <p-divider></p-divider>
-    <div class="card">
-        <p-table #dt1 [value]="futureConferences" selectionMode="single" [(selection)]="selectedConference" dataKey="id"
-                 [tableStyle]="{'min-width': '50rem'}" [rows]="10" [paginator]="true" stateStorage="session"
-                 stateKey="statedemo-session">
-            <ng-template pTemplate="header">
-                <tr>
-                    <th pSortableColumn="text" class="w-15">Name <p-sortIcon field="text"></p-sortIcon></th>
-                    <th pSortableColumn="start" class="w-15">Start <p-sortIcon field="start"></p-sortIcon></th>
-                    <th pSortableColumn="end" class="w-15">End <p-sortIcon field="end"></p-sortIcon></th>
-                    <th pSortableColumn="location" class="w-15">Location <p-sortIcon field="location"></p-sortIcon></th>
-                    <th pSortableColumn="type" class="w-15">Type <p-sortIcon field="type"></p-sortIcon></th>
-                    <th pSortableColumn="invitees" class="w-15">Invitees <p-sortIcon field="invitees"></p-sortIcon></th>
-                </tr>
-                <tr>
-                    <th>
-                        <input pInputText type="text" (input)="filterTable('text', $event)" placeholder="Search by Name"
-                               class="w-full">
-                    </th>
-                    <th>
-                        <input pInputText type="text" (input)="filterTable('start', $event)" placeholder="Search by Start"
-                               class="w-full">
-                    </th>
-                    <th>
-                        <input pInputText type="text" (input)="filterTable('end', $event)" placeholder="Search by End" class="w-full">
-                    </th>
-                    <th>
-                        <input pInputText type="text" (input)="filterTable('location', $event)" placeholder="Search by Location"
-                               class="w-full">
-                    </th>
-                    <th>
-                        <input pInputText type="text" (input)="filterTable('type', $event)" placeholder="Search by Type" class="w-full">
-                    </th>
-                    <th>
-                        <input pInputText type="text" (input)="filterTable('invitees', $event)" placeholder="Search by Invitees"
-                               class="w-full">
-                    </th>
-                </tr>
-            </ng-template>
-            <ng-template pTemplate="body" let-conference>
-                <tr [pSelectableRow]="conference">
-                    <td>
-                        <span class="p-column-title">Name</span>
-                        {{ conference.text }}
-                    </td>
-                    <td>
-                        <span class="p-column-title">Start</span>
-                        {{ conference.start | date: 'short' }}
-                    </td>
-                    <td>
-                        <span class="p-column-title">End</span>
-                        {{ conference.end | date: 'short' }}
-                    </td>
-                    <td>
-                        <span class="p-column-title">Location</span>
-                        {{ conference.location }}
-                    </td>
-                    <td>
-                        <span class="p-column-title">Type</span>
-                        {{ conference.type }}
-                    </td>
-                    <td>
-                        <span class="p-column-title">Invitees</span>
-                        {{ conference.invitees.join(', ') }}
-                    </td>
-                    <!-- Add more columns based on your data structure -->
-                </tr>
-            </ng-template>
-            <ng-template pTemplate="emptymessage">
-                <tr>
-                    <td colspan="6">No conferences found.</td>
-                </tr>
-            </ng-template>
-        </p-table>
-    </div>
+  <h1>Future Conferences</h1>
+  <p-divider></p-divider>
+  <div class="card">
+    <p-table #dt1 [value]="futureConferences" selectionMode="single" [(selection)]="selectedConference" dataKey="id"
+             [tableStyle]="{'min-width': '50rem'}" [rows]="10" [paginator]="true" stateStorage="session"
+             stateKey="statedemo-session">
+      <ng-template pTemplate="header">
+        <tr>
+          <th pSortableColumn="text" class="w-15">Name
+            <p-sortIcon field="text"></p-sortIcon>
+          </th>
+          <th pSortableColumn="start" class="w-15">Start
+            <p-sortIcon field="start"></p-sortIcon>
+          </th>
+          <th pSortableColumn="end" class="w-15">End
+            <p-sortIcon field="end"></p-sortIcon>
+          </th>
+          <th pSortableColumn="location" class="w-15">Location
+            <p-sortIcon field="location"></p-sortIcon>
+          </th>
+          <th pSortableColumn="type" class="w-15">Type
+            <p-sortIcon field="type"></p-sortIcon>
+          </th>
+          <th pSortableColumn="status" class="w-15">Status
+            <p-sortIcon field="status"></p-sortIcon>
+          </th>
+          <th pSortableColumn="invitees" class="w-15">Invitees
+            <p-sortIcon field="invitees"></p-sortIcon>
+          </th>
+          <th pSortableColumn="change" class="w-15">Change
+            <p-sortIcon field="change"></p-sortIcon>
+          </th>
+        </tr>
+        <tr>
+          <th>
+            <input pInputText type="text" (input)="filterTable('text', $event)" placeholder="Search by Name"
+                   class="w-full">
+          </th>
+          <th>
+            <input pInputText type="text" (input)="filterTable('start', $event)" placeholder="Search by Start"
+                   class="w-full">
+          </th>
+          <th>
+            <input pInputText type="text" (input)="filterTable('end', $event)" placeholder="Search by End"
+                   class="w-full">
+          </th>
+          <th>
+            <input pInputText type="text" (input)="filterTable('location', $event)" placeholder="Search by Location"
+                   class="w-full">
+          </th>
+          <th>
+            <input pInputText type="text" (input)="filterTable('type', $event)" placeholder="Search by Type"
+                   class="w-full">
+          </th>
+          <th>
+            <input pInputText type="text" (input)="filterTable('invitees', $event)" placeholder="Search by Invitees"
+                   class="w-full">
+          </th>
+          <th></th> <!-- Empty column for status -->
+          <th></th> <!-- Empty column for change button -->
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-conference>
+        <tr [pSelectableRow]="conference">
+          <td>
+            <span class="p-column-title">Name</span>
+            {{ conference.text }}
+          </td>
+          <td>
+            <span class="p-column-title">Start</span>
+            {{ conference.start | date: 'short' }}
+          </td>
+          <td>
+            <span class="p-column-title">End</span>
+            {{ conference.end | date: 'short' }}
+          </td>
+          <td>
+            <span class="p-column-title">Location</span>
+            {{ conference.location }}
+          </td>
+          <td>
+            <span class="p-column-title">Type</span>
+            {{ conference.type }}
+          </td>
+          <td>
+            <span class="p-column-title">Invitees</span>
+            {{ conference.invitees.join(', ') }}
+          </td>
+          <td>
+            <span class="p-column-title">Status</span>
+            <!-- Display status based on statusId -->
+            {{ conference.statusId === 0 ? 'Pending' : (conference.statusId === 1 ? 'Approved' : 'Declined') }}
+          </td>
+          <td>
+            <!-- Button to change status -->
+            <button pButton pRipple type="button"
+                    class="p-button-rounded p-button-help w-full flex align-content-center justify-content-center"
+                    (click)="changeStatusDialog(conference)">
+              {{ conference.statusId === 0 ? 'Reply' : (conference.statusId === 1 ? 'Decline' : 'Approve') }}
+            </button>
+          </td>
+          <!-- Add more columns based on your data structure -->
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="emptymessage">
+        <tr>
+          <td colspan="9">No conferences found.</td>
+        </tr>
+      </ng-template>
+    </p-table>
+  </div>
 </div>
+
+<!-- future-conferences.component.html -->
+
+<!-- ... your existing code ... -->
+
+<!-- Dialog for Pending status -->
+<p-dialog header="Change Status - Pending" [(visible)]="displayPendingDialog" [responsive]="true" showEffect="fade"
+          [modal]="true" [style]="{width: '50vw','min-height': '60vh'}" [baseZIndex]="10000">
+  <!-- Add your form elements for Pending status -->
+  <!-- For example, a dropdown to select the new status -->
+  <div class="p-fluid">
+    <div class="p-field">
+      <label for="status">New Status</label>
+      <p-dropdown id="status" [options]="statusOptions" [(ngModel)]="selectedStatus" optionLabel="label"
+                  [filter]="true" filterPlaceholder="Search by status" placeholder="Select a status"
+                  [showClear]="true"></p-dropdown>
+    </div>
+  </div>
+  <p-footer>
+    <button pButton type="button" label="Change" icon="pi pi-check" (click)="changeStatus2(selectedConference, selectedStatus.value)"
+            [disabled]="!selectedStatus"></button>
+    <button pButton type="button" label="Cancel" icon="pi pi-times" (click)="cancelChangeStatus()"></button>
+  </p-footer>
+</p-dialog>
+
+<!-- Dialog for Approved status -->
+<p-dialog header="Change Status - Approved" [(visible)]="displayApprovedDialog" [responsive]="true" showEffect="fade"
+          [modal]="true" [style]="{width: '50vw','min-height': '60vh'}" [baseZIndex]="10000">
+  <!-- Add your form elements for Approved status -->
+  <!-- For example, a button to approve the conference -->
+  <div class="p-fluid">
+    <div class="p-field">
+      <p>Are you sure you want to decline?</p>
+    </div>
+  </div>
+  <p-footer>
+    <button pButton type="button" label="Cancel" icon="pi pi-times" (click)="cancelChangeStatus()"></button>
+    <button pButton type="button" label="Decline Conference" icon="pi pi-check" (click)="declineConference(selectedConference)"></button>
+  </p-footer>
+</p-dialog>
+
+<!-- Dialog for Declined status -->
+<p-dialog header="Change Status - Declined" [(visible)]="displayDeclinedDialog" [responsive]="true" showEffect="fade"
+          [modal]="true" [style]="{width: '50vw','min-height': '60vh'}" [baseZIndex]="10000">
+  <!-- Add your form elements for Declined status -->
+  <!-- For example, a button to decline the conference -->
+  <div class="p-fluid">
+    <div class="p-field">
+      <p>Are you sure you want to approve?</p>
+      </div>
+  </div>
+  <p-footer>
+    <button pButton type="button" label="Cancel" icon="pi pi-times" (click)="cancelChangeStatus()"></button>
+    <button pButton type="button" label="Approve Conference" icon="pi pi-check" (click)="approveConference(selectedConference)"></button>
+
+  </p-footer>
+</p-dialog>
+
+

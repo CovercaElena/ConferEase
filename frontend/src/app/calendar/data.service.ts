@@ -76,4 +76,5 @@ export interface MyEventData extends DayPilot.EventData {
   type?: any;
   invitees?: string[];
   color?: string;
+  statusId?: number;
 }

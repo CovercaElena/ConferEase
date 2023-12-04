@@ -1,7 +1,7 @@
 <app-menu></app-menu>
 
 <!-- Past Conferences -->
-<div class="p-4 m-3 home border-round w-full h-screen back shadow-7">
+<div class="p-4 m-3 home border-round w-full h-full back shadow-7">
     <h1><a routerLink="/pastConf">Past Conferences</a></h1>
     <div *ngIf="pastConferences$ | async as pastConferences; else pastLoading">
         <p-carousel [value]="pastConferences" [numVisible]="3" [numScroll]="1">
