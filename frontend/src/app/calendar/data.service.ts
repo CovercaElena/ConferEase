@@ -22,7 +22,7 @@ export class DataService {
   constructor(private http: HttpClient) { }
 
   getEvents(from: DayPilot.Date, to: DayPilot.Date): Observable<MyEventData[]> {
-    return this.http.get<MyEventData[]>(environment.apiUrl + '/events').pipe(
+    return this.http.get<MyEventData[]>(environment.apiUrl + '/conference').pipe(
         retry(3),
         tap(data => data),
         map(res => {
@@ -51,7 +51,7 @@ export class DataService {
     return types.map(type => ({ name: type, id: type }));
   }
   createEvent(event: MyEventData): Observable<any> {
-    return this.http.post(environment.apiUrl + '/events', event).pipe(
+    return this.http.post(environment.apiUrl + '/conference', event).pipe(
         tap(response => response),
         catchError((error: HttpErrorResponse) => {
           console.error('Error creating event:', error);
@@ -61,7 +61,7 @@ export class DataService {
     );
   }
   updateEvent(updatedEvent: MyEventData): Observable<any> {
-    const url = `${environment.apiUrl}/events/update/${updatedEvent.id}`;
+    const url = `${environment.apiUrl}/conference/update/${updatedEvent.id}`;
     return this.http.put(url, updatedEvent, { headers: this.headers }).pipe(
         tap(response => response),
         catchError((error: HttpErrorResponse) => {
