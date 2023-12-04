@@ -60,5 +60,18 @@ export class ConferenceService {
             })
         );
     }
+    getPublicConferences(): Observable<MyEventData[]> {
+        return this.http.get<MyEventData[]>(environment.apiUrl + '/conference').pipe(
+            retry(3),
+            tap(data => data),
+            map(res => {
+                console.log('getPublicConferences', res);
+                return res;
+            }),
+            catchError((error: HttpErrorResponse) => {
+                return throwError(() => error);
+            })
+        );
+    }
 
 }

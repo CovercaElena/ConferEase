@@ -2,74 +2,62 @@
 
 <!-- Past Conferences -->
 <div class="p-4 m-3 home border-round w-full h-full back shadow-7">
-    <h1><a routerLink="/pastConf">Past Conferences</a></h1>
-    <div *ngIf="pastConferences$ | async as pastConferences; else pastLoading">
-        <p-carousel [value]="pastConferences" [numVisible]="3" [numScroll]="1">
-            <ng-template let-conference pTemplate="carousel">
-                <div class="flex justify-content-center align-items-center flex-wrap gap-2">
-                    <div class="shadow-4 custom-card">
-                        <p-card class="custom-card w-max h-fit cards">
-                            <ng-template pTemplate="title">
-                                <strong>{{ conference.text }}</strong>
-                            </ng-template>
-                            <ng-template pTemplate="subtitle">
-                                <p>Location: {{ conference.location }}</p>
-                            </ng-template>
-                            <ng-template pTemplate="content">
-                                <p>Date: {{ conference.start }}</p>
-                            </ng-template>
-                        </p-card>
-                    </div>
-                </div>
-            </ng-template>
-        </p-carousel>
-        <ng-container *ngIf="pastConferences.length === 0">
-            <p class="text-red-600">No past conferences available.</p>
-        </ng-container>
+  <h1><a routerLink="/pastConf">Past Conferences</a></h1>
+  <div *ngIf="pastConferences$ | async as pastConferences; else pastLoading">
+    <p-carousel [value]="pastConferences" [numVisible]="2" [circular]="true" [autoplayInterval]="3000" [style]="{'max-height': '500px'}">
+      <ng-template let-conference pTemplate="item">
+        <p-card class="w-max h-fit cards">
+          <!-- Your conference item content goes here -->
+          <ng-container *ngIf="conference">
+            <h3>{{ conference.text }}</h3>
+            <p>Location: {{ conference.location }}</p>
+            <p>Date: {{ conference.start | date: 'short' }}</p>
+            <!-- Add more details as needed -->
+          </ng-container>
+        </p-card>
+      </ng-template>
+    </p-carousel>
+    <ng-container *ngIf="pastConferences.length === 0">
+      <p class="text-red-600">No past conferences available.</p>
+    </ng-container>
+  </div>
+  <ng-template #pastLoading>
+    <div class="newtons-cradle">
+      <div class="newtons-cradle__dot"></div>
+      <div class="newtons-cradle__dot"></div>
+      <div class="newtons-cradle__dot"></div>
+      <div class="newtons-cradle__dot"></div>
     </div>
-    <ng-template #pastLoading>
-        <div class="newtons-cradle">
-            <div class="newtons-cradle__dot"></div>
-            <div class="newtons-cradle__dot"></div>
-            <div class="newtons-cradle__dot"></div>
-            <div class="newtons-cradle__dot"></div>
-        </div>
-    </ng-template>
+  </ng-template>
 
-    <p-divider></p-divider>
+  <p-divider></p-divider>
 
-    <!-- Future Conferences -->
-    <h1><a routerLink="/futureConf">Future Conferences</a></h1>
-    <div *ngIf="futureConferences$ | async as futureConferences; else futureLoading">
-        <p-carousel [value]="futureConferences" [numVisible]="3" [numScroll]="1">
-            <ng-template let-conference pTemplate="carousel">
-                <div class="flex justify-content-center align-items-center flex-wrap gap-2">
-                    <div class="shadow-4">
-                        <p-card class="w-max h-fit cards">
-                            <ng-template pTemplate="title">
-                                <strong>{{ conference.text }}</strong>
-                            </ng-template>
-                            <ng-template pTemplate="subtitle">
-                                <p>Location: {{ conference.location }}</p>
-                            </ng-template>
-                            <ng-template pTemplate="content">
-                                <p>Date: {{ conference.start }}</p>
-                            </ng-template>
-                        </p-card>
-                    </div>
-                </div>
-            </ng-template>
-        </p-carousel>
-        <ng-container *ngIf="futureConferences.length === 0">
-            <p class="text-red-600">No future conferences available.</p>
-        </ng-container>
+  <!-- Future Conferences -->
+  <h1><a routerLink="/futureConf">Future Conferences</a></h1>
+  <div *ngIf="futureConferences$ | async as futureConferences; else futureLoading">
+    <p-carousel [value]="futureConferences" [numVisible]="2" [circular]="true" [autoplayInterval]="3000" [style]="{'max-height': '500px'}">
+      <ng-template let-conference pTemplate="item">
+        <p-card class="w-max h-fit cards">
+          <!-- Your conference item content goes here -->
+          <ng-container *ngIf="conference">
+            <h3>{{ conference.text }}</h3>
+            <p>Location: {{ conference.location }}</p>
+            <p>Date: {{ conference.start | date: 'short' }}</p>
+            <!-- Add more details as needed -->
+          </ng-container>
+        </p-card>
+      </ng-template>
+    </p-carousel>
+    <ng-container *ngIf="futureConferences.length === 0">
+      <p class="text-red-600">No future conferences available.</p>
+    </ng-container>
+  </div>
+  <ng-template #futureLoading>
+    <div class="newtons-cradle">
+      <div class="newtons-cradle__dot"></div>
+      <div class="newtons-cradle__dot"></div>
+      <div class="newtons-cradle__dot"></div>
+      <div class="newtons-cradle__dot"></div>
     </div>
-    <ng-template #futureLoading>
-        <div class="newtons-cradle">
-            <div class="newtons-cradle__dot"></div>
-            <div class="newtons-cradle__dot"></div>
-            <div class="newtons-cradle__dot"></div>
-            <div class="newtons-cradle__dot"></div>
-        </div>
-    </ng-template>
+  </ng-template>
 </div>

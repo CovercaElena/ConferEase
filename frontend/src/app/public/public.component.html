@@ -1,1 +1,31 @@
+<!-- public.component.html -->
+
 <app-menu></app-menu>
+
+<div class="p-4 m-3 public border-round w-full h-full back shadow-7">
+  <h1>Public Feed</h1>
+  <p-divider></p-divider>
+
+  <div *ngIf="publicConferences$ | async as publicConferences; else publicLoading">
+    <p-carousel [value]="publicConferences" [numVisible]="2" [circular]="true" [autoplayInterval]="3000" [style]="{'max-height': '500px'}">
+      <ng-template let-conference pTemplate="item">
+        <p-card>
+          <!-- Your news item content goes here -->
+          <h3>{{ conference.text }}</h3>
+          <p>{{ conference.description }}</p>
+          <p>Date: {{ conference.start | date: 'short' }}</p>
+          <!-- Add more details as needed -->
+        </p-card>
+      </ng-template>
+    </p-carousel>
+  </div>
+
+  <ng-template #publicLoading>
+    <div class="newtons-cradle">
+      <div class="newtons-cradle__dot"></div>
+      <div class="newtons-cradle__dot"></div>
+      <div class="newtons-cradle__dot"></div>
+      <div class="newtons-cradle__dot"></div>
+    </div>
+  </ng-template>
+</div>
