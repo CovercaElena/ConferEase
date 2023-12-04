@@ -61,7 +61,7 @@ export class ConferenceService {
         );
     }
     getPublicConferences(): Observable<MyEventData[]> {
-        return this.http.get<MyEventData[]>(environment.apiUrl + '/conference').pipe(
+        return this.http.get<MyEventData[]>(environment.apiUrl + '/conference/public').pipe(
             retry(3),
             tap(data => data),
             map(res => {
