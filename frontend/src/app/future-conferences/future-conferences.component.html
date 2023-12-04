@@ -131,9 +131,9 @@
     </div>
   </div>
   <p-footer>
-    <button pButton type="button" label="Change" icon="pi pi-check" (click)="changeStatus2(selectedConference, selectedStatus.value)"
+    <button pButton type="button" label="Change" icon="pi pi-check" class="p-button-success"(click)="changeStatus2(selectedConference, selectedStatus.value)"
             [disabled]="!selectedStatus"></button>
-    <button pButton type="button" label="Cancel" icon="pi pi-times" (click)="cancelChangeStatus()"></button>
+    <button pButton type="button" label="Cancel" icon="pi pi-times" class="p-button-danger"(click)="cancelChangeStatus()"></button>
   </p-footer>
 </p-dialog>
 

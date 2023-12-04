@@ -9,11 +9,11 @@
   <div *ngIf="publicConferences$ | async as publicConferences; else publicLoading">
     <p-carousel [value]="publicConferences" [numVisible]="2" [circular]="true" [autoplayInterval]="3000" [style]="{'max-height': '500px'}">
       <ng-template let-conference pTemplate="item">
-        <p-card>
+        <p-card (click)="showDetailsDialog(conference)">
           <!-- Your news item content goes here -->
           <h3>{{ conference.text }}</h3>
           <p>{{ conference.description }}</p>
-          <p>Date: {{ conference.start | date: 'short' }}</p>
+          <p>Date: {{ conference.start }}</p>
           <!-- Add more details as needed -->
         </p-card>
       </ng-template>
@@ -29,3 +29,29 @@
     </div>
   </ng-template>
 </div>
+<p-dialog header="Conference Details" [(visible)]="displayDetailsDialog" [modal]="true" [style]="{width: '50vw', 'min-height': '60vh'}" [baseZIndex]="10000">
+  <ng-container *ngIf="selectedConference">
+    <div>
+      <!-- Display conference details here -->
+      <h3>{{ selectedConference.text }}</h3>
+      <p>{{ selectedConference.location }}</p>
+      <p>Start: {{ selectedConference.start }}</p>
+      <p>End: {{ selectedConference.end }}</p>
+      <p>Type:{{selectedConference.type}}</p>
+      <!-- Add more details as needed -->
+
+      <!-- Buttons for Accept and Decline -->
+      <div class="p-fluid">
+        <div class="p-field">
+        </div>
+
+      </div>
+    </div>
+    <p-footer class="flex justify-content-between">
+      <button pButton type="button" label="Decline" icon="pi pi-times" class="p-button-danger" (click)="declineConference(selectedConference)"></button>
+
+      <button pButton type="button" label="Accept" icon="pi pi-check" class="p-button-success" (click)="approveConference(selectedConference)"></button>
+
+    </p-footer>
+  </ng-container>
+</p-dialog>
