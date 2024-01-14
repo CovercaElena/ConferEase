@@ -10,10 +10,13 @@ export class DropdownValue {
     location?:string;
     date?:string;
     text?:string;
+    isAdmin?:boolean;
     start?:Date;
     end?:Date;
     type?:string;
     invitees?:string[];
     department?:string;
+    email?:string;
+    password?:string;
 
 }

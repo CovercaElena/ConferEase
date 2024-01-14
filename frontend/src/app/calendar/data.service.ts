@@ -35,16 +35,7 @@ export class DataService {
     );
   }
 
-  getColors(): any[] {
-    const colors = [
-      { name: "Green", id: DataService.colors.green },
-      { name: "Yellow", id: DataService.colors.yellow },
-      { name: "Red", id: DataService.colors.red },
-      { name: "Gray", id: DataService.colors.gray },
-      { name: "Blue", id: DataService.colors.blue },
-    ];
-    return colors;
-  }
+
 
   getTypes(): any[] {
     const types = ["Online", "Hybrid", "Onsite"];
@@ -69,6 +60,40 @@ export class DataService {
         })
     );
   }
+    deleteEvent(eventId: number): Observable<any> {
+        // Assuming eventId is the ID of the event you want to mark as cancelled
+        const apiUrl = `${environment.apiUrl}/conference/${eventId}`;
+        console.log("hello");
+        // Set the request body to mark the event as cancelled
+        const requestBody = {
+            "cancelled": "true"
+        };
+       console.log(requestBody);
+       console.log(apiUrl);
+        return this.http.put(apiUrl, requestBody).pipe(
+            tap(response => response),
+            catchError((error: HttpErrorResponse) => {
+                return throwError(() => error);
+
+            })
+        );
+        console.log("uraaa");
+    }
+    getUsers():Observable<DropdownValue[]>
+    {
+        return this.http.get<DropdownValue[]>(environment.apiUrl + '/user/').pipe(
+            retry(3),
+            tap(data => data),
+            map(res => {
+                console.log('getUser get res', res);
+                return res;
+            }),
+            catchError((error: HttpErrorResponse) => {
+                return throwError(() => error);
+            })
+        );
+
+    }
 }
 
 export interface MyEventData extends DayPilot.EventData {
@@ -77,4 +102,5 @@ export interface MyEventData extends DayPilot.EventData {
   invitees?: string[];
   color?: string;
   statusId?: number;
+  cancelled?:boolean;
 }
