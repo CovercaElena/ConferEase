@@ -1,12 +1,12 @@
 export class DropdownValue {
     // @ts-ignore
-    id: number;
+    id?: number;
     // @ts-ignore
-    name: string;
+    name?: string;
     // @ts-ignore
-    statusId: number;
+    statusId?: number;
     // @ts-ignore
-    status: string;
+    status?: string;
     location?:string;
     date?:string;
     text?:string;

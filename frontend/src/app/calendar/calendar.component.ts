@@ -270,47 +270,7 @@ export class CalendarComponent implements AfterViewInit,OnInit {
 
 
     async onTimeRangeSelected(args: any) {
-        const modal = await DayPilot.Modal.form([
-            {name: "Text", id: "text"},
-            // Remove the Start and End fields from the form
 
-            {name: "Location", id: "location"},
-            {name: "Type", id: "type", type: "select", options: this.ds.getTypes()},
-            {name: "Invitees", id: "invitees",options: this.users},
-        ]);
-
-        if (modal.canceled) {
-            return;
-        }
-
-        const dp = args.control;
-
-        // Automatically use the start and end dates from the selection
-        const newEvent: MyEventData = {
-            id: DayPilot.guid(),
-            start: args.start,
-            end: args.end,
-            text: modal.result.text,
-            backColor: modal.result.backColor,
-            location: modal.result.location,
-            type: modal.result.type,
-            invitees: modal.result.invitees.split(',').map((invitee: string) => invitee.trim()),
-        };
-
-        // Add the new event locally
-        dp.events.add(newEvent);
-
-        // Send a POST request to the API to create the new event
-        this.ds.createEvent(newEvent).subscribe(
-            response => {
-                console.log('Event created successfully:', response);
-            },
-            error => {
-                console.error('Error creating event:', error);
-                // If there's an error, you might want to remove the event locally to keep the UI and server in sync
-                dp.events.remove(newEvent);
-            }
-        );
     }
 
 

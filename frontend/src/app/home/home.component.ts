@@ -58,6 +58,10 @@ export class HomeComponent implements OnInit {
             console.log(this.socialUser);
 
             if (user && user.email) {
+              if(user.email==="elena.coverca02@e-uvt.ro")
+              {
+                this.router.navigate(['adminpage']);
+              }
                 this.pastConferences$ = this.conferenceService.getConferences(
                     1,
                     user.email

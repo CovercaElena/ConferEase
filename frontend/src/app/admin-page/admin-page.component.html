@@ -1,0 +1,49 @@
+<app-menu-admin></app-menu-admin>
+<p-toast></p-toast>
+<div class="admin-page h-screen m-4 p-2">
+  <div class="grid">
+    <div class="col">
+      <p-card header="Create User">
+        <form [formGroup]="userForm" (ngSubmit)="createUser()">
+          <div class="p-fluid">
+            <div class="p-field">
+              <label for="email">Email</label>
+              <input id="email" type="email" pInputText formControlName="email" />
+            </div>
+            <div class="p-field">
+              <label for="department">Department</label>
+              <p-dropdown [options]="departments" id="department" formControlName="department"></p-dropdown>
+            </div>
+            <div class="p-field">
+              <label for="password">Password</label>
+              <input id="password" type="password" pInputText formControlName="password" />
+            </div>
+            <div class="p-field">
+              <label for="confirmPassword">Confirm Password</label>
+              <input id="confirmPassword" type="password" pInputText formControlName="confirmPassword" />
+            </div>
+            <div class="p-field m-3">
+            <button pButton type="submit" label="Create"></button>
+            </div>
+          </div>
+        </form>
+      </p-card>
+    </div>
+    <div class="col">
+      <p-card header="Create Department">
+        <form [formGroup]="departmentForm" (ngSubmit)="createDepartment()">
+          <div class="p-fluid">
+            <div class="p-field">
+              <label for="departmentName">Department Name</label>
+              <input id="departmentName" type="text" pInputText formControlName="departmentName" />
+            </div>
+            <div class="p-field m-3">
+            <button pButton type="submit" label="Create"></button>
+            </div>
+          </div>
+        </form>
+      </p-card>
+    </div>
+  </div>
+</div>
+

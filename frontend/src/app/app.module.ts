@@ -44,6 +44,9 @@ import { CalendarViewComponent } from './calendar-view/calendar-view.component';
 import { MultiSelectModule } from 'primeng/multiselect';
 import {CalendarModule} from "primeng/calendar";
 import { UpdateConferenceComponent } from './update-conference/update-conference.component';
+import { AdminPageComponent } from './admin-page/admin-page.component';
+import { MenuAdminComponent } from './menu-admin/menu-admin.component';
+import {ToastModule} from "primeng/toast";
 @NgModule({
     declarations: [
         AppComponent,
@@ -57,14 +60,16 @@ import { UpdateConferenceComponent } from './update-conference/update-conference
         PastConferencesComponent,
         FutureConferencesComponent,
         CalendarViewComponent,
-        UpdateConferenceComponent
+        UpdateConferenceComponent,
+        AdminPageComponent,
+        MenuAdminComponent
     ],
     imports: [
         BrowserModule,
         MultiSelectModule,
         AppRoutingModule,
         ScheduleModule, RecurrenceEditorModule, MenubarModule,
-        InputTextModule, BrowserAnimationsModule, DropdownModule, ButtonModule, DialogModule, CheckboxModule, MenubarModule, FormsModule, SplitterModule, CardModule, ReactiveFormsModule, SocialLoginModule, GoogleSigninButtonModule, HttpClientModule, DividerModule, DayPilotModule, CarouselModule, TableModule, CalendarModule
+        InputTextModule, BrowserAnimationsModule, DropdownModule, ButtonModule, DialogModule, CheckboxModule, MenubarModule, FormsModule, SplitterModule, CardModule, ReactiveFormsModule, SocialLoginModule, GoogleSigninButtonModule, HttpClientModule, DividerModule, DayPilotModule, CarouselModule, TableModule, CalendarModule, ToastModule
     ],
     providers: [{
         provide: 'SocialAuthServiceConfig',

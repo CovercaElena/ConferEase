@@ -74,5 +74,16 @@ export class ConferenceService {
             })
         );
     }
+  getDepartments(): Observable<string[]> {
+    return this.http.get<string[]>(environment.apiUrl + '/department/');
+  }
+
+  createUser(userData: DropdownValue): Observable<any> {
+    return this.http.post(environment.apiUrl + '/user/', userData);
+  }
+
+  createDepartment(departmentData: { department: string }): Observable<any> {
+    return this.http.post(environment.apiUrl + '/department/', departmentData);
+  }
 
 }

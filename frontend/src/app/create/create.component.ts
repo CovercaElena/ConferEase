@@ -4,12 +4,14 @@ import { Component, OnInit } from '@angular/core';
 import { DataService, MyEventData } from '../calendar/data.service';
 import { SelectItem } from 'primeng/api';
 import {FormBuilder,FormControl,FormGroup,Validators} from "@angular/forms";
+import { MessageService } from 'primeng/api';
 
 
 @Component({
   selector: 'app-create',
   templateUrl: './create.component.html',
-  styleUrls: ['./create.component.css']
+  styleUrls: ['./create.component.css'],
+    providers:[MessageService]
 })
 export class CreateComponent implements OnInit {
   event!: MyEventData;
@@ -21,7 +23,8 @@ export class CreateComponent implements OnInit {
   createEvent:FormGroup;
 
   constructor(private dataService: DataService,
-              private fb:FormBuilder) {
+              private fb:FormBuilder,
+              private messageService: MessageService) {
     this.createEvent=this.fb.group({
       text:['',Validators.required],
       start:[''],
@@ -69,19 +72,13 @@ export class CreateComponent implements OnInit {
             };
             console.log(newEvent);
 
-            this.dataService.createEvent(newEvent).subscribe(
-                response => {
-                    // Handle the response, e.g., show a success message or navigate to another page
-                    console.log('Event created successfully:', response);
-                },
-                error => {
-                    // Handle any errors, e.g., show an error message
-                    console.error('Error creating event:', error);
-                }
-            );
+            this.dataService.createEvent(newEvent).subscribe(response => {
+                this.messageService.add({severity: 'success', summary: 'Success', detail: 'Event created successfully'});
+            }, error => {
+                this.messageService.add({severity: 'error', summary: 'Error', detail: 'Failed to create event'});
+            });
         } else {
-            // Handle the case where the form is invalid
-            console.error('Form is not valid');
+            this.messageService.add({severity: 'warn', summary: 'Warning', detail: 'Form is not valid'});
         }
     }
 

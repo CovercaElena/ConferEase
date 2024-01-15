@@ -5,12 +5,14 @@ import {SharedService} from '../services/shared.service'; // Assuming this is yo
 import {SelectItem} from 'primeng/api';
 import {Router} from "@angular/router";
 import {DayPilot} from "@daypilot/daypilot-lite-angular";
+import {MessageService} from "primeng/api";
 
 
 @Component({
   selector: 'app-update-conference',
   templateUrl: './update-conference.component.html',
-  styleUrls: ['./update-conference.component.css']
+  styleUrls: ['./update-conference.component.css'],
+  providers:[MessageService]
 })
 export class UpdateConferenceComponent implements OnInit {
   updateEventForm: FormGroup;
@@ -25,6 +27,7 @@ export class UpdateConferenceComponent implements OnInit {
     private dataService: DataService,
     private sharedService: SharedService,
     private router:Router,
+    private messageService: MessageService
   ) {
     this.updateEventForm = this.fb.group({
       text: ['', Validators.required],
@@ -86,17 +89,15 @@ export class UpdateConferenceComponent implements OnInit {
         id: this.even.id
       };
       console.log(updatedEvent);
-      this.dataService.updateEvent(updatedEvent).subscribe(
-        response => {
-          console.log('Event updated successfully:', response);
-          this.router.navigate(['/calendar']);
-          // Redirect or indicate success
-        },
-        error => {
-          console.error('Error updating event:', error);
-          // Handle error
-        }
-      );
+
+      this.dataService.updateEvent(updatedEvent).subscribe(response => {
+        this.messageService.add({severity: 'success', summary: 'Success', detail: 'Event updated successfully'});
+        this.router.navigate(['/calendar']); // Redirect after success
+      }, error => {
+        this.messageService.add({severity: 'error', summary: 'Error', detail: 'Failed to update event'});
+      });
+    } else {
+      this.messageService.add({severity: 'warn', summary: 'Warning', detail: 'Form is not valid'});
     }
   }
 }
