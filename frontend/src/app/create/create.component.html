@@ -39,6 +39,15 @@
             </div>
 
             <div class="p-field">
+                <label for="visibility">Visibility</label>
+                <p-dropdown id="visibility"
+                            [options]="[{label: 'Private', value: 'Private'}, {label: 'Public', value: 'Public'}]"
+                            formControlName="visibility"
+                            (onChange)="onVisibilityChange($event)">
+                </p-dropdown>
+            </div>
+
+            <div class="p-field" *ngIf="createEvent.get('visibility')?.value === 'Private'">
                 <label for="invitees">Invitees</label>
                 <p-multiSelect id="invitees" [options]="users" formControlName="invitees"></p-multiSelect>
             </div>

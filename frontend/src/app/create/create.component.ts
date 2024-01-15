@@ -5,6 +5,7 @@ import { DataService, MyEventData } from '../calendar/data.service';
 import { SelectItem } from 'primeng/api';
 import {FormBuilder,FormControl,FormGroup,Validators} from "@angular/forms";
 import { MessageService } from 'primeng/api';
+import { SocialAuthService, SocialUser } from '@abacritt/angularx-social-login';
 
 
 @Component({
@@ -15,16 +16,21 @@ import { MessageService } from 'primeng/api';
 })
 export class CreateComponent implements OnInit {
   event!: MyEventData;
-
+  showInvitees: boolean = false;
   types!: SelectItem[];
   users!: SelectItem[];
   meetLink: string = '';
   showOnlineLink: boolean = false;
   createEvent:FormGroup;
+    email!: string;
+    userId!: number;
+    socialUser!: SocialUser;
+    isLoggedin?: boolean;
 
   constructor(private dataService: DataService,
               private fb:FormBuilder,
-              private messageService: MessageService) {
+              private messageService: MessageService,
+              private socialAuthService: SocialAuthService) {
     this.createEvent=this.fb.group({
       text:['',Validators.required],
       start:[''],
@@ -32,7 +38,8 @@ export class CreateComponent implements OnInit {
       location:[''],
       type:['',Validators.required],
       meetLink:[''],
-      invitees:['']
+        visibility: ['', Validators.required], // Add a new control for visibility
+        invitees: ['']
     });
   }
 
@@ -42,6 +49,16 @@ export class CreateComponent implements OnInit {
       this.users = data.map(user => ({ label: user.name, value: user.id }));
     });
     this.meetLink='link';
+      this.socialAuthService.authState.subscribe(async (user) => {
+          this.socialUser = user;
+          this.isLoggedin = user != null;
+          console.log(this.socialUser);
+
+          if (user && user.email) {this.email=user.email}});
+    // @ts-ignore
+
+
+
   }
 
   onTypeChange(event: any) {
@@ -68,7 +85,10 @@ export class CreateComponent implements OnInit {
                 type: formValue.type,
                 meetLink: this.showOnlineLink ? this.meetLink : '',
                 invitees: formValue.invitees,
-                id: ""
+                id: "",
+                isPublic: formValue.visibility === 'Private' ? false : true,
+                owner:this.email
+
             };
             console.log(newEvent);
 
@@ -80,6 +100,9 @@ export class CreateComponent implements OnInit {
         } else {
             this.messageService.add({severity: 'warn', summary: 'Warning', detail: 'Form is not valid'});
         }
+    }
+    onVisibilityChange(event: any) {
+        // No need to manually show/hide the invitees field as it's handled by *ngIf in the template
     }
 
 }

@@ -319,10 +319,14 @@ export class CalendarComponent implements AfterViewInit,OnInit {
             }
         );*/
       console.log(args.e.data);
-      this.sharedService.setSelectedEventData(args.e.data);
+        const event = args.e.data;
+        if (this.email === event.owner) {
+            this.sharedService.setSelectedEventData(args.e.data);
 
-      // Navigate to the update form page
-      this.router.navigate(['/update']);
+            // Navigate to the update form page
+
+            this.router.navigate(['/update']);
+        }
     }
 
 }

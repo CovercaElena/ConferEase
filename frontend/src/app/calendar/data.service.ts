@@ -104,4 +104,6 @@ export interface MyEventData extends DayPilot.EventData {
   statusId?: number;
   cancelled?:boolean;
   meetLink?:string;
+  isPublic?:boolean;
+  owner?:string;
 }
