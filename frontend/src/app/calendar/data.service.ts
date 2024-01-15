@@ -21,8 +21,8 @@ export class DataService {
 
   constructor(private http: HttpClient) { }
 
-  getEvents(from: DayPilot.Date, to: DayPilot.Date): Observable<MyEventData[]> {
-    return this.http.get<MyEventData[]>(environment.apiUrl + '/conference').pipe(
+  getEvents(from: DayPilot.Date, to: DayPilot.Date,email:string): Observable<MyEventData[]> {
+    return this.http.get<MyEventData[]>(environment.apiUrl + '/conference/'+email).pipe(
         retry(3),
         tap(data => data),
         map(res => {
@@ -103,4 +103,5 @@ export interface MyEventData extends DayPilot.EventData {
   color?: string;
   statusId?: number;
   cancelled?:boolean;
+  meetLink?:string;
 }

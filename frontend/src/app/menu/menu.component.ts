@@ -31,6 +31,7 @@ export class MenuComponent implements OnInit {
       {
         label: 'Public conferences',routerLink:['/public'],routerLinkActiveOptions:"active"
       },
+      {label:'Calendar',routerLink:['/calendar'],routerLinkActiveOptions:"active"},
     ];
 
   }

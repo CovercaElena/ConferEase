@@ -7,6 +7,8 @@ import {PublicComponent} from "./public/public.component";
 import {CreateComponent} from "./create/create.component";
 import {PastConferencesComponent} from "./past-conferences/past-conferences.component";
 import {FutureConferencesComponent} from "./future-conferences/future-conferences.component";
+import {CalendarViewComponent} from "./calendar-view/calendar-view.component";
+import {UpdateConferenceComponent} from "./update-conference/update-conference.component";
 
 const routes: Routes = [
   {path:'',component:LoginComponent},
@@ -16,7 +18,8 @@ const routes: Routes = [
   {path:'create',component:CreateComponent},
   {path:'pastConf',component:PastConferencesComponent},
   {path:'futureConf',component:FutureConferencesComponent},
-
+  {path:'calendar',component:CalendarViewComponent},
+  {path:'update',component:UpdateConferenceComponent},
 
 ];
 

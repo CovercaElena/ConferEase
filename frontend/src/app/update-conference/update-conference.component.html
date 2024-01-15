@@ -1,0 +1,52 @@
+<!--suppress XmlInvalidId -->
+<app-menu></app-menu>
+<div class="m-4"></div>
+<div class="flex justify-content-center align-items-center">
+  <div class="p-4 m-3 home border-round w-7 h-full back shadow-7">
+    <form [formGroup]="updateEventForm" (ngSubmit)="onSubmit()" class="justify-content-center flex align-items-center">
+      <div class="p-fluid">
+        <div class="p-field">
+          <label for="text">Event Name</label>
+          <input type="text" id="text" formControlName="text" class="p-inputtext p-component">
+          <div *ngIf="updateEventForm.get('text')?.invalid && updateEventForm.get('text')?.touched">
+            Event name is required.
+          </div>
+        </div>
+
+        <div class="p-field">
+          <label for="start">Start</label>
+          <p-calendar [showTime]="true" [showSeconds]="true" inputId="start" formControlName="start"></p-calendar>
+        </div>
+
+        <div class="p-field">
+          <label for="end">End</label>
+          <p-calendar [showTime]="true" [showSeconds]="true" inputId="end" formControlName="end"></p-calendar>
+        </div>
+
+        <div class="p-field">
+          <label for="location">Location</label>
+          <input type="text" id="location" formControlName="location" class="p-inputtext p-component">
+        </div>
+
+        <div class="p-field">
+          <label for="type">Type</label>
+          <p-dropdown id="type" [options]="types" (onChange)="onTypeChange($event)" formControlName="type"></p-dropdown>
+        </div>
+
+        <div class="p-field" *ngIf="showOnlineLink">
+          <label for="meetLink">Google Meet Link</label>
+          <input type="text" id="meetLink" [value]="meetLink" formControlName="meetLink" class="p-inputtext p-component" readonly>
+        </div>
+
+        <div class="p-field">
+          <label for="invitees">Invitees</label>
+          <p-multiSelect id="invitees" [options]="users" formControlName="invitees"></p-multiSelect>
+        </div>
+
+        <div class="p-field m-3">
+          <button pButton type="submit" label="Update Event"></button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

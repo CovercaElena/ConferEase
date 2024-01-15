@@ -22,6 +22,7 @@ import {PublicComponent} from './public/public.component';
 import {SplitterModule} from "primeng/splitter";
 import { DropdownModule } from 'primeng/dropdown';
 import {CardModule} from "primeng/card";
+import {UpdateMode} from "@angular/compiler-cli/src/ngtsc/program_driver";
 import {
     GoogleLoginProvider,
     GoogleSigninButtonModule,
@@ -39,6 +40,10 @@ import {CarouselModule} from "primeng/carousel";
 import { PastConferencesComponent } from './past-conferences/past-conferences.component';
 import {TableModule} from "primeng/table";
 import { FutureConferencesComponent } from './future-conferences/future-conferences.component';
+import { CalendarViewComponent } from './calendar-view/calendar-view.component';
+import { MultiSelectModule } from 'primeng/multiselect';
+import {CalendarModule} from "primeng/calendar";
+import { UpdateConferenceComponent } from './update-conference/update-conference.component';
 @NgModule({
     declarations: [
         AppComponent,
@@ -50,13 +55,16 @@ import { FutureConferencesComponent } from './future-conferences/future-conferen
         PublicComponent,
         CalendarComponent,
         PastConferencesComponent,
-        FutureConferencesComponent
+        FutureConferencesComponent,
+        CalendarViewComponent,
+        UpdateConferenceComponent
     ],
     imports: [
         BrowserModule,
+        MultiSelectModule,
         AppRoutingModule,
         ScheduleModule, RecurrenceEditorModule, MenubarModule,
-        InputTextModule,BrowserAnimationsModule,DropdownModule, ButtonModule, DialogModule, CheckboxModule, MenubarModule, FormsModule, SplitterModule, CardModule, ReactiveFormsModule, SocialLoginModule, GoogleSigninButtonModule, HttpClientModule, DividerModule, DayPilotModule, CarouselModule, TableModule
+        InputTextModule, BrowserAnimationsModule, DropdownModule, ButtonModule, DialogModule, CheckboxModule, MenubarModule, FormsModule, SplitterModule, CardModule, ReactiveFormsModule, SocialLoginModule, GoogleSigninButtonModule, HttpClientModule, DividerModule, DayPilotModule, CarouselModule, TableModule, CalendarModule
     ],
     providers: [{
         provide: 'SocialAuthServiceConfig',

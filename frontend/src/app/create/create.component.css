@@ -1,0 +1,12 @@
+.p-card {
+  background: linear-gradient(to bottom, rgb(208, 225, 253), rgba(145, 150, 204, 0.41)) !important;
+}
+
+.back {
+  background-color: #F5F5F5 !important;
+  padding:30px !important;
+  border-radius:20px !important;
+  margin-left:10px !important;
+  margin-right:30px !important;
+
+}

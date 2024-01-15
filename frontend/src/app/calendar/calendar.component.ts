@@ -1,4 +1,4 @@
-import {Component, ViewChild, AfterViewInit} from "@angular/core";
+import {Component, ViewChild, AfterViewInit, OnInit} from "@angular/core";
 import {
     DayPilot,
     DayPilotCalendarComponent,
@@ -7,6 +7,10 @@ import {
 } from "@daypilot/daypilot-lite-angular";
 import {DataService, MyEventData} from "./data.service";
 import{DropdownValue} from "../../DropdownValue";
+import {AuthService} from "../services/auth.service";
+import {SocialAuthService, SocialUser} from "@abacritt/angularx-social-login";
+import {SharedService} from "../services/shared.service";
+import {Router} from "@angular/router";
 
 @Component({
     selector: 'calendar-component',
@@ -98,7 +102,7 @@ import{DropdownValue} from "../../DropdownValue";
         }
     `]
 })
-export class CalendarComponent implements AfterViewInit {
+export class CalendarComponent implements AfterViewInit,OnInit {
 
     @ViewChild("day") day!: DayPilotCalendarComponent;
     @ViewChild("week") week!: DayPilotCalendarComponent;
@@ -110,6 +114,11 @@ export class CalendarComponent implements AfterViewInit {
     date = DayPilot.Date.today();
     options: string[] = ["Online", "Hybrid", "On site"];
     ev!: MyEventData;
+  user!: DropdownValue;
+  email!: string;
+  userId!: number;
+  socialUser!: SocialUser;
+  isLoggedin?: boolean;
 
 
     configNavigator: DayPilot.NavigatorConfig = {
@@ -159,12 +168,27 @@ export class CalendarComponent implements AfterViewInit {
         onEventClick: this.onEventClick.bind(this),
     };
 
-    constructor(private ds: DataService) {
+    constructor(private ds: DataService,
+                private authService: AuthService,
+                private socialAuthService: SocialAuthService,
+                private sharedService:SharedService,
+                private router:Router) {
         this.viewWeek();
         this.options = ["Online", "Hybrid", "On site"];
         this.loadUsers();
 
     }
+
+  ngOnInit(): void {
+      this.socialAuthService.authState.subscribe(async (user) => {
+          this.socialUser = user;
+          this.isLoggedin = user != null;
+
+          if (user && user.email) {
+              this.email = user.email;
+          }
+      });
+  }
     users:DropdownValue[]=[];
     loadUsers(): void {
         this.ds.getUsers().subscribe(users => {
@@ -179,7 +203,7 @@ export class CalendarComponent implements AfterViewInit {
     loadEvents(): void {
         const from = this.nav.control.visibleStart();
         const to = this.nav.control.visibleEnd();
-        this.ds.getEvents(from, to).subscribe(result => {
+        this.ds.getEvents(from, to,this.socialUser.email).subscribe(result => {
             this.events = result;
         });
     }
@@ -291,7 +315,7 @@ export class CalendarComponent implements AfterViewInit {
 
 
     async onEventClick(args: any) {
-        const form = [
+      /*  const form = [
             {name: "Text", id: "text"},
             {name: "Start", id: "start", dateFormat: "MM/dd/yyyy", type: "datetime"},
             {name: "End", id: "end", dateFormat: "MM/dd/yyyy", type: "datetime"},
@@ -333,7 +357,12 @@ export class CalendarComponent implements AfterViewInit {
                 // Handle error
                 console.error('Error updating event', error);
             }
-        );
+        );*/
+      console.log(args.e.data);
+      this.sharedService.setSelectedEventData(args.e.data);
+
+      // Navigate to the update form page
+      this.router.navigate(['/update']);
     }
 
 }
