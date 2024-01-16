@@ -7,6 +7,8 @@
   align-items: stretch; /* Stretch children to fill the container */
 }
 
+
+
 .left-container, .right-container {
   display: flex;
   flex-basis: 50%; /* Each container takes half of the card */
