@@ -34,7 +34,8 @@ export class AdminPageComponent implements OnInit {
             email: ['', [Validators.required, Validators.email]],
             department: [null, Validators.required],
             password: ['', Validators.required],
-            confirmPassword: ['', Validators.required]
+            confirmPassword: ['', Validators.required],
+            userName: ['', Validators.required]
         });
 
         this.departmentForm = this.fb.group({
@@ -64,8 +65,10 @@ export class AdminPageComponent implements OnInit {
             const newUser: DropdownValue = {
                 email: this.userForm.value.email,
                 password: this.userForm.value.password,
-                department: this.userForm.value.department
+                department: this.userForm.value.department,
+                name:this.userForm.value.userName
             };
+            console.log(newUser);
 
             this.conferenceService.createUser(newUser).subscribe(response => {
                 this.messageService.add({severity: 'success', summary: 'Success', detail: 'User created successfully'});
