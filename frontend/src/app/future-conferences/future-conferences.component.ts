@@ -89,8 +89,9 @@ export class FutureConferencesComponent implements OnInit {
    let newConference = conference;
     newConference.statusId = 1;
     console.log(newConference);
-    this.changeStatus(newConference);
     this.displayApprovedDialog = false;
+    this.changeStatus(newConference);
+
   }
 
   // Method to handle the decline of the conference
@@ -98,8 +99,9 @@ export class FutureConferencesComponent implements OnInit {
     let newConference = conference;
     newConference.statusId = 2;
     console.log(newConference);
-    this.changeStatus(newConference);
     this.displayDeclinedDialog = false;
+    this.changeStatus(newConference);
+
   }
   changeStatus2(conference: MyEventData, status: number) {
     console.log(status);
