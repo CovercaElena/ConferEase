@@ -2,8 +2,10 @@
 <p-toast></p-toast>
 <div class="m-4"></div>
 <div class="flex justify-content-center align-items-center">
-<div class="p-4 m-3 home border-round w-7 h-full back shadow-7">
-    <form [formGroup]="createEvent" (ngSubmit)="submitEvent()" class="justify-content-center flex align-items-center">
+    <div class="card-container border-round back shadow-7">
+        <!-- Left Side: Form Container -->
+        <div class="left-container">
+    <form [formGroup]="createEvent" (ngSubmit)="submitEvent()" class="justify-content-center flex align-items-center p-8">
         <div class="p-fluid">
             <div class="p-field">
                 <label for="text">Event Name</label>
@@ -60,5 +62,9 @@
             </div>
         </div>
     </form>
+    </div>
+        <div class="right-container">
+            <img src="assets/create.jpg" alt="Create Event Image" style="width:100%; height:auto;">
+        </div>
 </div>
 </div>

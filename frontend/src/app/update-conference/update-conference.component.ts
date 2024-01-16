@@ -51,7 +51,7 @@ export class UpdateConferenceComponent implements OnInit {
     // Initialize types and users similar to the create component
     this.types = this.dataService.getTypes().map(type => ({label: type.name, value: type.id}));
     this.dataService.getUsers().subscribe(data => {
-      this.users = data.map(user => ({label: user.name, value: user.name}));
+      this.users = data.map(user => ({label: user.name, value: user.email}));
     });
     this.loadDepartments();
 

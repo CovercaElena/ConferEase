@@ -1,3 +1,12 @@
-.p-card {
-    background: linear-gradient(to bottom, rgb(255, 255, 255), rgba(255, 255, 255, 0.88)) !important;
+.card-container {
+    display: flex;
+    width: 100%; /* Adjust width as needed */
+    background-color: white; /* Adjust background color as needed */
+    border-radius: 10px; /* Rounded corners for the card */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow for the card */
+}
+
+.left-container, .right-container {
+    flex: 1; /* Each container takes half of the card */
+    padding: 20px; /* Padding around each form */
 }

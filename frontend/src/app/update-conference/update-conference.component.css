@@ -1,0 +1,30 @@
+.card-container {
+    display: flex;
+    width: 100%; /* Adjust width as needed */
+    background-color: white; /* Adjust background color as needed */
+    border-radius: 10px; /* Rounded corners for the card */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Shadow for the card */
+    align-items: stretch; /* Stretch children to fill the container */
+}
+
+.left-container, .right-container {
+    display: flex;
+    flex-basis: 50%; /* Each container takes half of the card */
+}
+
+.left-container {
+    flex-direction: column; /* Stack form fields vertically */
+    justify-content: space-between; /* Distribute space around form fields */
+    padding: 20px; /* Padding around the form */
+}
+
+.right-container {
+    /* No additional styles needed for the image container */
+}
+
+.right-container img {
+    width: 100%; /* Full width of the container */
+    height: 100%; /* Full height of the container */
+    object-fit: cover; /* Resize image to cover the container */
+}
+

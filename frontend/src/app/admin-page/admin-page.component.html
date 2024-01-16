@@ -1,9 +1,10 @@
 <app-menu-admin></app-menu-admin>
 <p-toast></p-toast>
-<div class="admin-page h-screen m-4 p-2">
-  <div class="grid">
-    <div class="col">
-      <p-card header="Create User">
+<div class="flex justify-content-center align-items-center">
+  <div class="card-container m-3 border-round back shadow-7 p-5">
+    <!-- Left Side: User Form Container -->
+    <div class="left-container p-7">
+      <h3>Create User</h3>
         <form [formGroup]="userForm" (ngSubmit)="createUser()">
           <div class="p-fluid">
             <div class="p-field">
@@ -31,10 +32,10 @@
             </div>
           </div>
         </form>
-      </p-card>
     </div>
-    <div class="col">
-      <p-card header="Create Department">
+    <p-divider align="left" layout="vertical"></p-divider>
+    <div class="right-container p-7">
+      <h3>Create Department</h3>
         <form [formGroup]="departmentForm" (ngSubmit)="createDepartment()">
           <div class="p-fluid">
             <div class="p-field">
@@ -46,7 +47,6 @@
             </div>
           </div>
         </form>
-      </p-card>
     </div>
   </div>
 </div>

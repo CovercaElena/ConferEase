@@ -50,7 +50,7 @@ export class CreateComponent implements OnInit {
   async ngOnInit() {
     this.types = this.dataService.getTypes().map(type => ({ label: type.name, value: type.id }));
     this.dataService.getUsers().subscribe(data => {
-      this.users = data.map(user => ({ label: user.name, value: user.name }));
+      this.users = data.map(user => ({ label: user.name, value: user.email }));
     });
     this.meetLink='link';
       this.socialAuthService.authState.subscribe(async (user) => {
