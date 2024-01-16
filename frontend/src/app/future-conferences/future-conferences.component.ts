@@ -22,7 +22,8 @@ import {Invitation} from "../../Invitation";
   templateUrl: './future-conferences.component.html',
   styleUrls: ['./future-conferences.component.css'],
   encapsulation: ViewEncapsulation.None,
-  providers: [DatePipe],
+  providers: [DatePipe,MessageService],
+
 })
 export class FutureConferencesComponent implements OnInit {
   environment: any;

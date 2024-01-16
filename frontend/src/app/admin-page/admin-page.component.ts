@@ -4,6 +4,7 @@ import {SelectItem} from 'primeng/api';
 import {ConferenceService} from '../services/conference.service';
 import {DropdownValue} from "../../DropdownValue";
 import {MessageService} from "primeng/api";
+import { SocialAuthService, SocialUser } from '@abacritt/angularx-social-login';
 
 @Component({
     selector: 'app-admin-page',
@@ -15,8 +16,12 @@ export class AdminPageComponent implements OnInit {
     userForm!: FormGroup;
     departmentForm!: FormGroup;
     departments!: SelectItem[];
+    email!: string;
+    userId!: number;
+    socialUser!: SocialUser;
+    isLoggedin?: boolean;
 
-    constructor(private fb: FormBuilder, private messageService: MessageService, private conferenceService: ConferenceService) {
+    constructor(private fb: FormBuilder,  private socialAuthService: SocialAuthService, private messageService: MessageService, private conferenceService: ConferenceService) {
     }
 
     ngOnInit() {
@@ -35,6 +40,12 @@ export class AdminPageComponent implements OnInit {
         this.departmentForm = this.fb.group({
             departmentName: ['', Validators.required]
         });
+        this.socialAuthService.authState.subscribe(async (user) => {
+            this.socialUser = user;
+            this.isLoggedin = user != null;
+            console.log(this.socialUser);
+
+            if (user && user.email) {this.email=user.email}});
     }
 
     private loadDepartments() {

@@ -17,6 +17,7 @@ import {DropdownValue} from "../../DropdownValue";
   templateUrl: './public.component.html',
   styleUrls: ['./public.component.css'],
   encapsulation: ViewEncapsulation.None,
+  providers:[MessageService]
 })
 export class PublicComponent implements OnInit {
   publicConferences$!: Observable<MyEventData[]>;
