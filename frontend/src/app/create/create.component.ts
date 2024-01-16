@@ -6,6 +6,7 @@ import { SelectItem } from 'primeng/api';
 import {FormBuilder,FormControl,FormGroup,Validators} from "@angular/forms";
 import { MessageService } from 'primeng/api';
 import { SocialAuthService, SocialUser } from '@abacritt/angularx-social-login';
+import {ConferenceService} from "../services/conference.service";
 
 
 @Component({
@@ -19,6 +20,7 @@ export class CreateComponent implements OnInit {
   showInvitees: boolean = false;
   types!: SelectItem[];
   users!: SelectItem[];
+  departmentOptions!: SelectItem[];
   meetLink: string = '';
   showOnlineLink: boolean = false;
   createEvent:FormGroup;
@@ -30,7 +32,8 @@ export class CreateComponent implements OnInit {
   constructor(private dataService: DataService,
               private fb:FormBuilder,
               private messageService: MessageService,
-              private socialAuthService: SocialAuthService) {
+              private socialAuthService: SocialAuthService,
+              private conferenceService:ConferenceService) {
     this.createEvent=this.fb.group({
       text:['',Validators.required],
       start:[''],
@@ -39,14 +42,15 @@ export class CreateComponent implements OnInit {
       type:['',Validators.required],
       meetLink:[''],
         visibility: ['', Validators.required], // Add a new control for visibility
-        invitees: ['']
+        invitees: [''],
+        departmentInvitees: ['']
     });
   }
 
   async ngOnInit() {
     this.types = this.dataService.getTypes().map(type => ({ label: type.name, value: type.id }));
     this.dataService.getUsers().subscribe(data => {
-      this.users = data.map(user => ({ label: user.name, value: user.id }));
+      this.users = data.map(user => ({ label: user.name, value: user.name }));
     });
     this.meetLink='link';
       this.socialAuthService.authState.subscribe(async (user) => {
@@ -56,10 +60,22 @@ export class CreateComponent implements OnInit {
 
           if (user && user.email) {this.email=user.email}});
     // @ts-ignore
+      this.loadDepartments();
 
 
 
   }
+
+    private loadDepartments() {
+        this.conferenceService.getDepartments().subscribe(
+            departments => {
+                this.departmentOptions = departments.map(dept => ({
+                    label: dept, value: dept
+                }));
+            },
+            error => console.error('Error loading departments:', error)
+        );
+    }
 
   onTypeChange(event: any) {
     this.showOnlineLink = event.value === 'Online' || event.value === 'Hybrid';
@@ -77,17 +93,21 @@ export class CreateComponent implements OnInit {
         if (this.createEvent.valid) {
             const formValue = this.createEvent.value;
 
+
             const newEvent: MyEventData = {
                 text: formValue.text,
-                start: new DayPilot.Date(formValue.start),
-                end: new DayPilot.Date(formValue.end),
+                // @ts-ignore
+                start: (new DayPilot.Date(formValue.start)).getDatePart(),
+                // @ts-ignore
+                end: (new DayPilot.Date(formValue.end)).getDatePart(),
                 location: formValue.location,
                 type: formValue.type,
                 meetLink: this.showOnlineLink ? this.meetLink : '',
                 invitees: formValue.invitees,
                 id: "",
                 isPublic: formValue.visibility === 'Private' ? false : true,
-                owner:this.email
+                owner:this.email,
+                departments:formValue.departmentInvitees
 
             };
             console.log(newEvent);

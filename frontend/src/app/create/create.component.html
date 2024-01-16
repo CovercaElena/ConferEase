@@ -51,6 +51,10 @@
                 <label for="invitees">Invitees</label>
                 <p-multiSelect id="invitees" [options]="users" formControlName="invitees"></p-multiSelect>
             </div>
+            <div class="p-field" *ngIf="createEvent.get('visibility')?.value === 'Private'">
+                <label for="departmentInvitees">Invite Entire Departments</label>
+                <p-multiSelect id="departmentInvitees" [options]="departmentOptions" formControlName="departmentInvitees"></p-multiSelect>
+            </div>
             <div class="p-field m-3">
             <button  pButton type="button" label="Create Event" type="submit"></button>
             </div>

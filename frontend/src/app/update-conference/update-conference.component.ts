@@ -6,6 +6,7 @@ import {SelectItem} from 'primeng/api';
 import {Router} from "@angular/router";
 import {DayPilot} from "@daypilot/daypilot-lite-angular";
 import {MessageService} from "primeng/api";
+import {ConferenceService} from "../services/conference.service";
 
 
 @Component({
@@ -18,6 +19,7 @@ export class UpdateConferenceComponent implements OnInit {
   updateEventForm: FormGroup;
   types!: SelectItem[];
   users!: SelectItem[];
+  departmentOptions!: SelectItem[];
   meetLink: string = '';
   showOnlineLink: boolean = false;
   even!:MyEventData;
@@ -27,7 +29,8 @@ export class UpdateConferenceComponent implements OnInit {
     private dataService: DataService,
     private sharedService: SharedService,
     private router:Router,
-    private messageService: MessageService
+    private messageService: MessageService,
+    private conferenceService:ConferenceService
   ) {
     this.updateEventForm = this.fb.group({
       text: ['', Validators.required],
@@ -36,16 +39,21 @@ export class UpdateConferenceComponent implements OnInit {
       location: [''],
       type: ['', Validators.required],
       meetLink: [''],
-      invitees: ['']
+      invitees: [''],
+      departmentInvitees: [''],
+      visibility: ['', Validators.required]
     });
   }
-
+  onVisibilityChange(event: any) {
+    // You can implement additional logic here if needed when visibility changes
+  }
   ngOnInit(): void {
     // Initialize types and users similar to the create component
     this.types = this.dataService.getTypes().map(type => ({label: type.name, value: type.id}));
     this.dataService.getUsers().subscribe(data => {
-      this.users = data.map(user => ({label: user.name, value: user.id}));
+      this.users = data.map(user => ({label: user.name, value: user.name}));
     });
+    this.loadDepartments();
 
     // Retrieve the event data from SharedService
 
@@ -73,6 +81,16 @@ export class UpdateConferenceComponent implements OnInit {
     }
     this.updateEventForm.patchValue({meetLink: this.meetLink});
   }
+  private loadDepartments() {
+    this.conferenceService.getDepartments().subscribe(
+        departments => {
+          this.departmentOptions = departments.map(dept => ({
+            label: dept, value: dept
+          }));
+        },
+        error => console.error('Error loading departments:', error)
+    );
+  }
 
   onSubmit(): void {
     if (this.updateEventForm.valid) {
@@ -86,7 +104,10 @@ export class UpdateConferenceComponent implements OnInit {
         type: formValue.type,
         meetLink: this.showOnlineLink ? this.meetLink : '',
         invitees: formValue.invitees,
-        id: this.even.id
+        id: this.even.id,
+        departments:formValue.departmentInvitees,
+        isPublic: formValue.visibility === 'Public',
+
       };
       console.log(updatedEvent);
 

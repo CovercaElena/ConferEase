@@ -5,6 +5,9 @@ import { ConferenceService } from '../services/conference.service';
 import { MessageService } from 'primeng/api';
 import { Observable } from 'rxjs';
 import { MyEventData ,DataService} from '../calendar/data.service';
+import {Invitation} from "../../Invitation";
+import { SocialAuthService, SocialUser } from '@abacritt/angularx-social-login';
+import {DropdownValue} from "../../DropdownValue";
 // public.component.ts
 
 // ... (existing imports)
@@ -20,18 +23,28 @@ export class PublicComponent implements OnInit {
   publicConferences: MyEventData[] = [];
   displayDetailsDialog: boolean = false;
   selectedConference: MyEventData | null = null;
+  user!: DropdownValue;
+  email!: string;
+  userId!: number;
+  socialUser!: SocialUser;
+  isLoggedin?: boolean;
 
   constructor(
     private conferenceService: ConferenceService,
     private messageService: MessageService,
-    private dataService: DataService
+    private dataService: DataService,
+    private socialAuthService: SocialAuthService,
   ) {}
 
   ngOnInit(): void {
     // Fetch public conferences
     this.publicConferences$ = this.conferenceService.getPublicConferences();
-
-    this.publicConferences$.subscribe(
+    this.socialAuthService.authState.subscribe(async (user) => {
+      this.socialUser = user;
+      this.isLoggedin = user != null;
+      console.log(this.socialUser);
+    });
+      this.publicConferences$.subscribe(
       (publicConferences) => {
         this.publicConferences = publicConferences;
       },
@@ -70,7 +83,17 @@ export class PublicComponent implements OnInit {
     this.displayDetailsDialog = false;
   }
   changeStatus(conference: MyEventData) {
-    this.dataService.updateEvent(conference).subscribe(
+    let invite:Invitation=new Invitation();
+    // @ts-ignore
+    invite.meetId=conference.id as number;
+    // @ts-ignore
+    invite.statusId=conference.statusId;
+    // @ts-ignore
+    invite.email=this.socialUser.email;
+    // @ts-ignore
+    console.log(invite);
+    // @ts-ignore
+    this.dataService.updateInvite(invite).subscribe(
       (response) => {
         console.log(response);
         this.messageService.add({

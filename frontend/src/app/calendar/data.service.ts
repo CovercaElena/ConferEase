@@ -4,6 +4,7 @@ import { DayPilot } from "@daypilot/daypilot-lite-angular";
 import { HttpClient, HttpErrorResponse, HttpHeaders } from "@angular/common/http";
 import { environment } from "../environment";
 import { DropdownValue } from "../../DropdownValue";
+import {Invitation} from "../../Invitation";
 
 @Injectable()
 export class DataService {
@@ -60,6 +61,15 @@ export class DataService {
         })
     );
   }
+    updateInvite(updatedEvent: Invitation): Observable<any> {
+        const url = `${environment.apiUrl}/invite/${updatedEvent.meetId}`;
+        return this.http.put(url, updatedEvent, { headers: this.headers }).pipe(
+            tap(response => response),
+            catchError((error: HttpErrorResponse) => {
+                return throwError(() => error);
+            })
+        );
+    }
     deleteEvent(eventId: number): Observable<any> {
         // Assuming eventId is the ID of the event you want to mark as cancelled
         const apiUrl = `${environment.apiUrl}/conference/${eventId}`;
@@ -99,11 +109,12 @@ export class DataService {
 export interface MyEventData extends DayPilot.EventData {
   location?: string;
   type?: any;
-  invitees?: string[];
+  invitees?: any[];
   color?: string;
   statusId?: number;
   cancelled?:boolean;
   meetLink?:string;
   isPublic?:boolean;
   owner?:string;
+  departments?:any[];
 }

@@ -15,6 +15,7 @@ import { Table } from 'primeng/table';
 import {ConfirmationService, ConfirmEventType} from 'primeng/api';
 import {DialogModule} from 'primeng/dialog';
 import { DropdownModule } from 'primeng/dropdown';
+import {Invitation} from "../../Invitation";
 
 @Component({
   selector: 'app-future-conferences',
@@ -117,7 +118,17 @@ export class FutureConferencesComponent implements OnInit {
   }
 
   changeStatus(conference: MyEventData) {
-    this.dataService.updateEvent(conference).subscribe(
+    let invite:Invitation=new Invitation();
+    // @ts-ignore
+    invite.meetId=conference.id as number;
+    // @ts-ignore
+    invite.statusId=conference.statusId;
+    // @ts-ignore
+    invite.email=this.socialUser.email;
+    // @ts-ignore
+    console.log(invite);
+// @ts-ignore
+    this.dataService.updateInvite(invite).subscribe(
       (response) => {
         console.log(response);
         this.messageService.add({
