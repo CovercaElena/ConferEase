@@ -17,7 +17,7 @@ export class MenuComponent implements OnInit {
   ngOnInit() {
     this.items = [
       {
-        label: 'LogIn',routerLink:[''],routerLinkActiveOptions:"active"
+        label: 'LogOut',routerLink:['/logout'],routerLinkActiveOptions:"active"
       },
       {
         label: 'Home', routerLink:['/home'],routerLinkActiveOptions:"active"

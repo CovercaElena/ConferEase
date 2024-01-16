@@ -47,6 +47,7 @@ import { UpdateConferenceComponent } from './update-conference/update-conference
 import { AdminPageComponent } from './admin-page/admin-page.component';
 import { MenuAdminComponent } from './menu-admin/menu-admin.component';
 import {ToastModule} from "primeng/toast";
+import { LogoutComponent } from './logout/logout.component';
 @NgModule({
     declarations: [
         AppComponent,
@@ -62,7 +63,8 @@ import {ToastModule} from "primeng/toast";
         CalendarViewComponent,
         UpdateConferenceComponent,
         AdminPageComponent,
-        MenuAdminComponent
+        MenuAdminComponent,
+        LogoutComponent
     ],
     imports: [
         BrowserModule,

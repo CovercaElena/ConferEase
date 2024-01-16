@@ -10,6 +10,7 @@ import {FutureConferencesComponent} from "./future-conferences/future-conference
 import {CalendarViewComponent} from "./calendar-view/calendar-view.component";
 import {UpdateConferenceComponent} from "./update-conference/update-conference.component";
 import {AdminPageComponent} from "./admin-page/admin-page.component";
+import {LogoutComponent} from "./logout/logout.component";
 
 const routes: Routes = [
   {path:'',component:LoginComponent},
@@ -22,6 +23,7 @@ const routes: Routes = [
   {path:'calendar',component:CalendarViewComponent},
   {path:'update',component:UpdateConferenceComponent},
   {path:'adminpage',component:AdminPageComponent},
+  { path: 'logout', component: LogoutComponent }
 
 ];
 

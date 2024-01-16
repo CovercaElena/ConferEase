@@ -15,7 +15,7 @@ export class MenuAdminComponent implements OnInit {
 
   ngOnInit(): void {
     this.items = [{
-      label: 'LogIn', routerLink: [''], routerLinkActiveOptions: "active"
+      label: 'LogOut', routerLink: ['/logout'], routerLinkActiveOptions: "active"
     }];
   }
 
