@@ -62,7 +62,7 @@ export class DataService {
     );
   }
     updateInvite(updatedEvent: Invitation): Observable<any> {
-        const url = `${environment.apiUrl}/invite/${updatedEvent.meetId}`;
+        const url = `${environment.apiUrl}/invite/update`;
         return this.http.put(url, updatedEvent, { headers: this.headers }).pipe(
             tap(response => response),
             catchError((error: HttpErrorResponse) => {
