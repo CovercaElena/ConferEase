@@ -126,7 +126,7 @@ export class HomeComponent implements OnInit {
                         severity: 'error',
                         summary: 'Error',
                         detail: 'There was an error trying to retrieve the user details',
-                        life: 3000,
+
                     });
                     reject();
                 },

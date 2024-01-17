@@ -54,13 +54,13 @@
                         </p-dropdown>
                     </div>
 
-                    <div class="p-field" *ngIf="updateEventForm.get('visibility')?.value === 'Private'">
+                    <div class="p-field">
                         <label for="invitees">Invitees</label>
                         <p-multiSelect id="invitees" [options]="users" formControlName="invitees"></p-multiSelect>
                     </div>
 
                     <!-- New department invitees dropdown -->
-                    <div class="p-field" *ngIf="updateEventForm.get('visibility')?.value === 'Private'">
+                    <div class="p-field">
                         <label for="departmentInvitees">Invite Entire Departments</label>
                         <p-multiSelect id="departmentInvitees" [options]="departmentOptions"
                                        formControlName="departmentInvitees"></p-multiSelect>

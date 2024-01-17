@@ -86,6 +86,7 @@ export class AdminPageComponent implements OnInit {
             console.log(departmentData);
             this.conferenceService.createDepartment(departmentData).subscribe(response => {
                 this.messageService.add({severity: 'success', summary: 'Success', detail: 'Department created successfully'});
+                this.loadDepartments();
             }, error => {
                 this.messageService.add({severity: 'error', summary: 'Error', detail: 'Failed to create department'});
             });

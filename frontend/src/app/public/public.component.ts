@@ -52,11 +52,10 @@ export class PublicComponent implements OnInit {
       (error) => {
         console.log(error);
         this.messageService.add({
-          key: 'top-right',
           severity: 'error',
           summary: 'Error',
           detail: 'There was an error trying to retrieve public conferences',
-          life: 3000,
+
         });
       }
     );
@@ -98,7 +97,6 @@ export class PublicComponent implements OnInit {
       (response) => {
         console.log(response);
         this.messageService.add({
-          key: 'top-right',
           severity: 'success',
           summary: 'Success',
           detail: 'Status updated successfully',
@@ -108,7 +106,6 @@ export class PublicComponent implements OnInit {
       (error) => {
         console.log(error);
         this.messageService.add({
-          key: 'top-right',
           severity: 'error',
           summary: 'Error',
           detail: 'There was an error updating the status',

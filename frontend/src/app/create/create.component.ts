@@ -97,9 +97,9 @@ export class CreateComponent implements OnInit {
             const newEvent: MyEventData = {
                 text: formValue.text,
                 // @ts-ignore
-                start: (new DayPilot.Date(formValue.start)).getDatePart(),
+                start: (new DayPilot.Date(formValue.start)),
                 // @ts-ignore
-                end: (new DayPilot.Date(formValue.end)).getDatePart(),
+                end: (new DayPilot.Date(formValue.end)),
                 location: formValue.location,
                 type: formValue.type,
                 meetLink: this.showOnlineLink ? this.meetLink : '',

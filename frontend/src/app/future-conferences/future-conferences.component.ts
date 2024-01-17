@@ -72,6 +72,7 @@ export class FutureConferencesComponent implements OnInit {
 
 
   changeStatusDialog(conference: MyEventData) {
+    console.log("entered");
     this.selectedConference = conference;
 
     // Show the appropriate dialog based on the status
@@ -81,6 +82,10 @@ export class FutureConferencesComponent implements OnInit {
       this.displayApprovedDialog = true;
     } else if (conference.statusId === 2) {
       this.displayDeclinedDialog = true;
+    }
+    else
+    {
+      this.displayPendingDialog = true;
     }
   }
 
@@ -135,7 +140,6 @@ export class FutureConferencesComponent implements OnInit {
       (response) => {
         console.log(response);
         this.messageService.add({
-          key: 'top-right',
           severity: 'success',
           summary: 'Success',
           detail: 'Status updated successfully',
@@ -145,7 +149,6 @@ export class FutureConferencesComponent implements OnInit {
       (error) => {
         console.log(error);
         this.messageService.add({
-          key: 'top-right',
           severity: 'error',
           summary: 'Error',
           detail: 'There was an error updating the status',
@@ -172,7 +175,6 @@ export class FutureConferencesComponent implements OnInit {
           (error) => {
             console.log(error);
             this.messageService.add({
-              key: 'top-right',
               severity: 'error',
               summary: 'Error',
               detail: 'There was an error trying to retrieve future conferences',

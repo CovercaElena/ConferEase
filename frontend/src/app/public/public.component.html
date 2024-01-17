@@ -1,7 +1,6 @@
 <!-- public.component.html -->
-<p-toast></p-toast>
 <app-menu></app-menu>
-
+<p-toast></p-toast>
 <div class="p-6 m-3 public border-round w-full h-full back shadow-7">
   <h1>Public Feed</h1>
   <p-divider></p-divider>
@@ -13,7 +12,7 @@
           <!-- Your news item content goes here -->
           <h3>{{ conference.text }}</h3>
           <p>{{ conference.description }}</p>
-          <p>Date: {{ conference.start }}</p>
+          <p>Date: {{ conference.start | date: 'short' }}</p>
           <!-- Add more details as needed -->
         </p-card>
       </ng-template>
